@@ -1,0 +1,5 @@
+Actual_Class,Pred_Not at all_Raw,Pred_Not at all_Norm,Pred_Slightly_Raw,Pred_Slightly_Norm,Pred_Moderately_Raw,Pred_Moderately_Norm,Pred_Severely_Raw,Pred_Severely_Norm
+Not at all,40,0.8696,5,0.1087,1,0.0217,0,0.0
+Slightly,15,0.5357,2,0.0714,9,0.3214,2,0.0714
+Moderately,13,0.619,1,0.0476,7,0.3333,0,0.0
+Severely,3,0.375,0,0.0,4,0.5,1,0.125

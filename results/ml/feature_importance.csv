@@ -1,0 +1,55 @@
+Feature,Importance
+Experienced_Cyberbullying_Binary,0.08702908431775101
+Cyberbullying_Frequency_Ordinal,0.06451664696665159
+Daily_Usage_Ordinal,0.05156034316146973
+Age_Ordinal,0.039192673451338256
+Platform_Used_Instagram,0.028398722289571597
+Witnessed_Cyberbullying_Binary,0.027891148770839244
+Action_Taken_Blocked the user,0.02683784613178703
+Incident_Platform_Instagram,0.02627036580232776
+Bullying_Type_Fake Rumors,0.025821945649381495
+Context_Area_Social Media Community,0.025466337197844743
+Platform_Used_YouTube,0.025452689131102338
+Platform_Used_WhatsApp,0.024114556804496878
+Bullying_Type_Fake Profile,0.023859954117277028
+Bullying_Type_Offensive Comments,0.023657104192074573
+Sought_Help_Family,0.023104677097661574
+Gender_Male,0.023103119695007966
+Action_Taken_Ignored it,0.022826836070547692
+Gender_Female,0.022639898396204235
+Bullying_Type_Body Shaming,0.022443231295832696
+Incident_Platform_WhatsApp,0.022320772726868027
+Sought_Help_No,0.021825768996265902
+Context_Area_Unknown Stranger,0.02173789734861729
+Sought_Help_Friends,0.020856316633512652
+Action_Taken_Told Friends / Family,0.02045444486014626
+Action_Taken_Reported the account,0.02035458381321019
+Bullying_Type_Hate Speech,0.01932939666991899
+Action_Taken_Took No Action,0.0183674859358185
+Incident_Platform_YouTube,0.017361781203301018
+Posted_Offensive_Yes,0.01711448207224941
+Context_Area_School / College,0.016425732076017264
+Incident_Platform_Others,0.015352840707003
+Bullying_Type_Stalking,0.014344376856011566
+Posted_Offensive_No,0.013834750288857887
+Context_Area_Family,0.013297083705646345
+Context_Area_Friends Circle,0.012845167097064266
+Platform_Used_Others,0.012775792498275335
+Bullying_Type_Threats,0.011430238867184332
+Context_Area_Online Gaming,0.01119660380871525
+Incident_Platform_Facebook,0.010835624743191843
+Sought_Help_Psychologist,0.010336922440645348
+Context_Area_Other,0.009713239954160584
+Platform_Used_Facebook,0.00890546339655021
+Posted_Offensive_Not Sure,0.004728044062925852
+Bullying_Type_Other,0.0037693236271707465
+Action_Taken_Sought Professional Help,0.0035108249449676897
+Bullying_Type_Impersonation,0.0026032235836042257
+Bullying_Type_Sexual Harassment,0.002376219882545048
+Sought_Help_Helpline,0.002145142710890389
+Gender_Non-binary,0.001807922692055887
+Platform_Used_X (Twitter),0.0011964927724218523
+Context_Area_Workplace,0.0011750047357131986
+Gender_Prefer not to say,0.000715772705024796
+Sought_Help_Teacher,0.0005512058763005164
+Sought_Help_Counselor,0.00021687516798090062

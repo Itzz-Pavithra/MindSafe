@@ -1,0 +1,29 @@
+{
+  "primary_model": {
+    "Accuracy": 0.4854,
+    "Macro_Precision": 0.37,
+    "Macro_Recall": 0.3498,
+    "Macro_F1": 0.3275,
+    "Weighted_Precision": 0.4134,
+    "Weighted_Recall": 0.4854,
+    "Weighted_F1": 0.4177
+  },
+  "full_benchmark": {
+    "Accuracy": 0.4854,
+    "Macro_Precision": 0.2854,
+    "Macro_Recall": 0.3305,
+    "Macro_F1": 0.2903,
+    "Weighted_Precision": 0.3865,
+    "Weighted_Recall": 0.4854,
+    "Weighted_F1": 0.4115
+  },
+  "baseline_dummy": {
+    "Accuracy": 0.4466,
+    "Macro_Precision": 0.1117,
+    "Macro_Recall": 0.25,
+    "Macro_F1": 0.1544,
+    "Weighted_Precision": 0.1995,
+    "Weighted_Recall": 0.4466,
+    "Weighted_F1": 0.2758
+  }
+}

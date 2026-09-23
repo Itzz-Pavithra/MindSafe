@@ -1,0 +1,7 @@
+Class,Precision,Recall,F1_Score,Support
+Not at all,0.5634,0.8696,0.6838,46
+Slightly,0.25,0.0714,0.1111,28
+Moderately,0.3333,0.3333,0.3333,21
+Severely,0.3333,0.125,0.1818,8
+Macro Average,0.37,0.3498,0.3275,103
+Weighted Average,0.4134,0.4854,0.4177,103

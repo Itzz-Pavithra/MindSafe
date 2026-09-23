@@ -186,6 +186,29 @@ function calcCorrelation(arrX, arrY) {
   return Number((num / den).toFixed(3));
 }
 
+function calcRanks(arr) {
+  const indexed = arr.map((val, idx) => ({ val, idx })).sort((a, b) => a.val - b.val);
+  const ranks = new Array(arr.length);
+  let i = 0;
+  while (i < indexed.length) {
+    let j = i;
+    while (j < indexed.length - 1 && indexed[j + 1].val === indexed[j].val) {
+      j++;
+    }
+    const avgRank = (i + 1 + j + 1) / 2;
+    for (let k = i; k <= j; k++) {
+      ranks[indexed[k].idx] = avgRank;
+    }
+    i = j + 1;
+  }
+  return ranks;
+}
+
+function calcSpearman(arrX, arrY) {
+  if (arrX.length !== arrY.length || arrX.length < 2) return 0;
+  return calcCorrelation(calcRanks(arrX), calcRanks(arrY));
+}
+
 // ==========================================
 // VARIABLE DEFINITIONS & CATALOGUE
 // ==========================================
@@ -208,7 +231,7 @@ export const VARIABLE_CATALOGUE = {
   },
   socialMediaPlatform: {
     key: 'socialMediaPlatform',
-    label: 'Primary Social Platform',
+    label: 'Primary / Incident Platform',
     type: 'categorical',
     categories: ['Instagram', 'YouTube', 'TikTok / Reels', 'X (Twitter)', 'Snapchat', 'Discord', 'WhatsApp'],
     extract: (r) => r.socialMediaPlatform
@@ -231,7 +254,8 @@ export const VARIABLE_CATALOGUE = {
     label: 'Cyberbullying Experience',
     type: 'binary',
     categories: ['Yes', 'No'],
-    extract: (r) => r.cyberbullyingExperience
+    extract: (r) => r.cyberbullyingExperience,
+    extractNumeric: (r) => (r.cyberbullyingExperience === 'Yes' ? 1 : 0)
   },
   frequency: {
     key: 'frequency',
@@ -282,6 +306,14 @@ export const VARIABLE_CATALOGUE = {
     extract: (r) => r.actionTaken
   }
 };
+
+// Aliases for research exploration compatibility
+VARIABLE_CATALOGUE.experience = VARIABLE_CATALOGUE.cyberbullyingExperience;
+VARIABLE_CATALOGUE.platform = VARIABLE_CATALOGUE.socialMediaPlatform;
+VARIABLE_CATALOGUE.incidentPlatform = VARIABLE_CATALOGUE.socialMediaPlatform;
+VARIABLE_CATALOGUE.usage = VARIABLE_CATALOGUE.usageHours;
+VARIABLE_CATALOGUE.cyberbullyingFrequency = VARIABLE_CATALOGUE.frequency;
+VARIABLE_CATALOGUE.mentalHealthImpact = VARIABLE_CATALOGUE.emotionalWellbeing;
 
 // ==========================================
 // CORE STATISTICS SERVICE
@@ -753,13 +785,21 @@ export const statisticsService = {
     }
 
     // ==========================================
-    // C. CORRELATION ANALYSIS (PEARSON)
+    // C. CORRELATION ANALYSIS (PEARSON & SPEARMAN)
     // ==========================================
-    if (testType === 'correlation') {
-      if (def1.type !== 'numerical_ordinal' || def2.type !== 'numerical_ordinal') {
+    if (testType === 'correlation' || testType === 'spearman') {
+      if ((def1.type !== 'numerical_ordinal' && def1.type !== 'binary') || 
+          (def2.type !== 'numerical_ordinal' && def2.type !== 'binary')) {
         return {
           applicable: false,
-          reason: 'Test not applicable for the selected variable types. (Correlation analysis requires two numerical or ordinal scaled variables with defined rank/interval order).'
+          reason: 'Test not applicable for the selected variable types. (Correlation analysis requires two ordinal, numerical, or binary scaled variables with defined rank order).'
+        };
+      }
+
+      if (!def1.extractNumeric || !def2.extractNumeric) {
+        return {
+          applicable: false,
+          reason: 'Test not applicable: missing numeric mapping for selected variables.'
         };
       }
 
@@ -769,11 +809,14 @@ export const statisticsService = {
       if (arrX.length < 2) {
         return {
           applicable: false,
-          reason: 'Sample size must be at least N = 2 to compute Pearson correlation.'
+          reason: 'Sample size must be at least N = 2 to compute correlation.'
         };
       }
 
-      const rCoeff = calcCorrelation(arrX, arrY);
+      const isSpearman = testType === 'spearman';
+      const rCoeff = isSpearman ? calcSpearman(arrX, arrY) : calcCorrelation(arrX, arrY);
+      const statName = isSpearman ? 'Spearman ρ' : 'Pearson r';
+      const testTitle = isSpearman ? 'Spearman Rank-Order Correlation Analysis' : 'Pearson Bivariate Correlation Analysis';
       const df = total - 2;
       const tStat = df > 0 && Math.abs(rCoeff) < 1
         ? Number((rCoeff * Math.sqrt(df / (1 - rCoeff * rCoeff))).toFixed(2))
@@ -786,20 +829,20 @@ export const statisticsService = {
       const strength = Math.abs(rCoeff) > 0.5 ? 'strong' : Math.abs(rCoeff) > 0.3 ? 'moderate' : 'weak';
 
       const interpretation = isSignificant
-        ? `Statistically significant ${direction} linear correlation detected between ${def1.label} and ${def2.label} (r = ${rCoeff}, p = ${pValue}, df = ${df}). Correlation indicates an observed co-movement between measures and does not imply causation.`
-        : `No statistically significant linear correlation detected between ${def1.label} and ${def2.label} at the α = 0.05 level (r = ${rCoeff}, p = ${pValue}, df = ${df}).`;
+        ? `Statistically significant ${direction} rank-order association detected between ${def1.label} and ${def2.label} (${statName} = ${rCoeff}, p = ${pValue}, df = ${df}). Correlation indicates an observed co-movement between measures and does not imply causation.`
+        : `No statistically significant rank-order correlation detected between ${def1.label} and ${def2.label} at the α = 0.05 level (${statName} = ${rCoeff}, p = ${pValue}, df = ${df}).`;
 
       return {
         applicable: true,
-        testType: 'correlation',
-        testName: 'Pearson Bivariate Correlation Analysis',
+        testType: isSpearman ? 'spearman' : 'correlation',
+        testName: testTitle,
         variables: `${def1.label} & ${def2.label}`,
         sampleSize: total,
         testStatistic: rCoeff,
-        statisticName: 'Pearson r',
+        statisticName: statName,
         degreesOfFreedom: df,
         pValue,
-        effectSizeName: 'Coefficient of Determination (r²)',
+        effectSizeName: 'Coefficient of Determination (r² / ρ²)',
         effectSize: Number((rCoeff * rCoeff).toFixed(3)),
         direction,
         strength,
@@ -827,17 +870,19 @@ export const statisticsService = {
       };
     }
 
+    const total = responses.length;
     const cleaned = responses.map(this.getStandardized);
 
     const targetClasses = ['Not at all', 'Slightly', 'Moderately', 'Severely'];
     const palette = ['#601D49', '#BD5579', '#EA9D9D', '#FFEBB8'];
 
     const defX = VARIABLE_CATALOGUE[varX] || VARIABLE_CATALOGUE.frequency;
+    const defY = VARIABLE_CATALOGUE[varY] || VARIABLE_CATALOGUE.emotionalWellbeing;
     const labelsX = defX.categories || ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'];
 
     const datasets = targetClasses.map((tClass, idx) => {
       const data = labelsX.map(lbl => {
-        return cleaned.filter(r => defX.extract(r) === lbl && r.emotionalWellbeing === tClass).length;
+        return cleaned.filter(r => defX.extract(r) === lbl && defY.extract(r) === tClass).length;
       });
 
       return {
@@ -848,80 +893,38 @@ export const statisticsService = {
       };
     });
 
-    const associationStats = await this.runCustomAnalysis('chi_square', varX, 'emotionalWellbeing');
+    const associationStats = await this.runCustomAnalysis('chi_square', defX.key, defY.key);
 
-    return {
-      hasData: true,
-      varX,
-      varY,
-      labels: labelsX,
-      datasets,
-      associationStats: associationStats.applicable ? associationStats : null,
-      interpretation: associationStats.applicable
-        ? associationStats.interpretation
-        : 'Association calculation ready.'
-    };
-  },
-
-  // 8. Dynamic Empirical Findings
-  async getFindings() {
-    const responses = await SurveyResponse.find({}).lean();
-    if (!responses.length) {
-      return {
-        hasData: false,
-        findings: [],
-        message: 'No survey data available yet.'
+    let spearmanStats = null;
+    if (defX.extractNumeric && defY.extractNumeric) {
+      const arrX = cleaned.map(defX.extractNumeric);
+      const arrY = cleaned.map(defY.extractNumeric);
+      const rho = calcSpearman(arrX, arrY);
+      const df = total - 2;
+      const tStat = df > 0 && Math.abs(rho) < 1
+        ? Number((rho * Math.sqrt(df / (1 - rho * rho))).toFixed(2))
+        : 0;
+      const pValue = df > 0 ? tTestPValue(tStat, df) : 1.0;
+      spearmanStats = {
+        rho,
+        pValue,
+        isSignificant: pValue < 0.05,
+        degreesOfFreedom: df
       };
-    }
-
-    const total = responses.length;
-    const cleaned = responses.map(this.getStandardized);
-    const findings = [];
-
-    // Finding 1: Cyberbullying exposure rate
-    const expCount = cleaned.filter(r => r.cyberbullyingExperience === 'Yes').length;
-    const expPct = Math.round((expCount / total) * 100);
-    findings.push({
-      title: 'Observed Cyberbullying Exposure Rate',
-      summary: `${expPct}% of respondents (${expCount} of ${total}) reported direct encounters with online harassment or cyberbullying.`,
-      category: 'Exposure'
-    });
-
-    // Finding 2: Prominent emotional impact level
-    const impactCounts = {};
-    cleaned.forEach(r => {
-      impactCounts[r.emotionalWellbeing] = (impactCounts[r.emotionalWellbeing] || 0) + 1;
-    });
-    let topImpact = 'Not at all';
-    let topImpactCount = 0;
-    for (const [k, v] of Object.entries(impactCounts)) {
-      if (v > topImpactCount) {
-        topImpactCount = v;
-        topImpact = k;
-      }
-    }
-    findings.push({
-      title: 'Predominant Mental Health Impact Classification',
-      summary: `"${topImpact}" is the most frequently self-reported mental-health impact category, representing ${Math.round((topImpactCount / total) * 100)}% of respondents.`,
-      category: 'Mental Health'
-    });
-
-    // Finding 3: Frequency & elevated strain relationship
-    const frequentUsers = cleaned.filter(r => r.frequency === 'Often' || r.frequency === 'Very Often');
-    if (frequentUsers.length > 0) {
-      const frequentImpacted = frequentUsers.filter(r => r.emotionalWellbeing === 'Moderately' || r.emotionalWellbeing === 'Severely').length;
-      const frequentPct = Math.round((frequentImpacted / frequentUsers.length) * 100);
-      findings.push({
-        title: 'Exposure Frequency & Psychological Strain Association',
-        summary: `Among respondents reporting frequent online harassment ("Often" or "Very Often"), ${frequentPct}% reported moderate or severe psychological impact.`,
-        category: 'Association'
-      });
     }
 
     return {
       hasData: true,
       totalResponses: total,
-      findings
+      varX,
+      varY,
+      labels: labelsX,
+      datasets,
+      associationStats: associationStats.applicable ? associationStats : null,
+      spearmanStats,
+      interpretation: associationStats.applicable
+        ? associationStats.interpretation
+        : 'Association calculation ready.'
     };
   }
 };

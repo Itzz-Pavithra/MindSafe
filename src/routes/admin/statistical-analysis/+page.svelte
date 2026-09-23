@@ -174,6 +174,7 @@
             <option value="chi_square">Chi-Square Test (Categorical × Categorical)</option>
             <option value="t_test">Independent T-Test (Binary Group × Continuous)</option>
             <option value="correlation">Pearson Correlation (Numerical/Ordinal × Numerical/Ordinal)</option>
+            <option value="spearman">Spearman Rank Correlation (Ordinal/Binary × Ordinal/Binary)</option>
           </select>
           <span class="text-[10px] text-[#82476B] block">Analytical hypothesis test method</span>
         </div>
@@ -338,20 +339,20 @@
                 </div>
               </div>
 
-            {:else if customResult.testType === 'correlation'}
+            {:else if customResult.testType === 'correlation' || customResult.testType === 'spearman'}
               <div class="space-y-2 pt-2">
-                <div class="text-xs font-bold text-[#601D49]">Correlation Parameters</div>
+                <div class="text-xs font-bold text-[#601D49]">{customResult.testType === 'spearman' ? 'Spearman Rank Correlation Parameters' : 'Pearson Correlation Parameters'}</div>
                 <div class="grid grid-cols-3 gap-3 text-xs">
                   <div class="p-3 rounded-xl bg-white border border-[#F0D5DD]">
                     <span class="text-[11px] text-[#82476B] block">Direction</span>
                     <span class="font-bold text-[#601D49] capitalize">{customResult.direction}</span>
                   </div>
                   <div class="p-3 rounded-xl bg-white border border-[#F0D5DD]">
-                    <span class="text-[11px] text-[#82476B] block">Linear Strength</span>
+                    <span class="text-[11px] text-[#82476B] block">Association Strength</span>
                     <span class="font-bold text-[#601D49] capitalize">{customResult.strength}</span>
                   </div>
                   <div class="p-3 rounded-xl bg-white border border-[#F0D5DD]">
-                    <span class="text-[11px] text-[#82476B] block">Variance Explained (r²)</span>
+                    <span class="text-[11px] text-[#82476B] block">Effect Size ({customResult.testType === 'spearman' ? 'ρ²' : 'r²'})</span>
                     <span class="font-bold text-[#BD5579]">{(customResult.effectSize * 100).toFixed(1)}%</span>
                   </div>
                 </div>

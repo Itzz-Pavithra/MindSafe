@@ -4,41 +4,68 @@ import bcrypt from 'bcryptjs';
 import { env } from '$env/dynamic/private';
 import { User } from './models/User.js';
 
-// Ensure reliable DNS resolution for MongoDB Atlas SRV connection strings on Windows
-try {
-  dns.setServers(['8.8.8.8', '1.1.1.1']);
-} catch (e) {
-  // Fall back to system DNS
+// Only apply custom DNS servers on local Windows environments if not on Vercel/cloud serverless
+if (process.platform === 'win32' && !process.env.VERCEL) {
+  try {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+  } catch (e) {
+    // Fall back to system DNS
+  }
 }
 
 function getMongoUri() {
-  return env.MONGODB_URI || process.env.MONGODB_URI;
+  const uri = (env.MONGODB_URI || process.env.MONGODB_URI || '').trim();
+  return uri;
+}
+
+/**
+ * Global cache across hot reloads in development and serverless invocations in production.
+ */
+let cached = global.mongoose;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
 export async function connectDB() {
-  if (mongoose.connection.readyState === 1) {
-    return mongoose.connection;
+  // If already connected, reuse existing active connection
+  if (cached.conn && mongoose.connection.readyState === 1) {
+    return cached.conn;
   }
 
-  const uri = getMongoUri();
-  if (!uri) {
-    console.error('[MindSafe Server] MONGODB_URI is missing from server environment ($env/dynamic/private and process.env)');
-    throw new Error('MONGODB_URI is not defined in server environment');
+  if (!cached.promise) {
+    const uri = getMongoUri();
+    if (!uri) {
+      console.error('[MindSafe Server] MONGODB_URI is missing from server environment ($env/dynamic/private and process.env)');
+      throw new Error('MONGODB_URI is not defined in server environment');
+    }
+
+    const opts = {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 10000,
+      maxPoolSize: 5
+    };
+
+    cached.promise = mongoose.connect(uri, opts).then((m) => {
+      console.log('[MindSafe Server] MongoDB connected successfully');
+
+      // Asynchronously synchronize administrator account without blocking the response
+      syncAdminAccount().catch((err) => {
+        console.error('[MindSafe Server] Admin synchronization notice:', err.message);
+      });
+
+      return m;
+    }).catch((err) => {
+      cached.promise = null; // Reset promise so subsequent invocations can retry
+      console.error('[MindSafe Server] MongoDB connection error:', err.message);
+      throw err;
+    });
   }
 
   try {
-    const db = await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 15000,
-      maxPoolSize: 10
-    });
-    console.log('[MindSafe Server] MongoDB connected successfully');
-
-    // Synchronize administrator account from environment configuration
-    await syncAdminAccount();
-
-    return db;
+    cached.conn = await cached.promise;
+    return cached.conn;
   } catch (error) {
-    console.error('[MindSafe Server] MongoDB connection error:', error.message);
+    cached.promise = null;
     throw error;
   }
 }
@@ -46,7 +73,7 @@ export async function connectDB() {
 async function syncAdminAccount() {
   try {
     const adminEmail = (env.ADMIN_EMAIL || process.env.ADMIN_EMAIL || '').trim().toLowerCase();
-    const adminPassword = env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD;
+    const adminPassword = (env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD || '').trim();
 
     if (!adminEmail || !adminPassword) {
       return;

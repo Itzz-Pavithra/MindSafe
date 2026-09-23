@@ -11,10 +11,10 @@
   let hasData = $derived(relData && relData.hasData && relData.totalResponses > 0);
 
   const varXOptions = [
+    { value: 'experience', label: 'Cyberbullying Experience (Yes / No)' },
     { value: 'frequency', label: 'Cyberbullying Encounter Frequency' },
-    { value: 'usage', label: 'Social Media Daily Usage Hours' },
-    { value: 'experience', label: 'Direct Cyberbullying Experience (Yes / No)' },
-    { value: 'platform', label: 'Primary Social Media Platform' }
+    { value: 'platform', label: 'Incident / Social Media Platform' },
+    { value: 'usage', label: 'Social Media Daily Usage Hours' }
   ];
 
   async function loadData() {
@@ -133,6 +133,18 @@
               </div>
             {/if}
           </div>
+
+          {#if relData.spearmanStats}
+            <div class="p-3.5 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-1">
+              <span class="text-[11px] font-semibold text-[#82476B]">Rank Correlation</span>
+              <p class="text-xs font-bold text-[#601D49]">Spearman Rank-Order Correlation (ρ)</p>
+              <div class="pt-1 text-[11px] text-[#601D49] space-y-0.5">
+                <div>Spearman ρ: <span class="font-bold text-[#BD5579]">{relData.spearmanStats.rho}</span></div>
+                <div>p-value: <span class="font-bold">{relData.spearmanStats.pValue}</span></div>
+                <div>Significance: <span class="font-bold {relData.spearmanStats.isSignificant ? 'text-emerald-700' : 'text-[#82476B]'}">{relData.spearmanStats.isSignificant ? 'p < 0.05 (Statistically Significant)' : 'Not Significant'}</span></div>
+              </div>
+            </div>
+          {/if}
 
           <div class="p-3.5 rounded-xl bg-[#FFEBB8]/40 border border-[#EA9D9D]/60 space-y-1">
             <span class="text-[11px] font-bold text-[#601D49]">Academic Interpretation</span>

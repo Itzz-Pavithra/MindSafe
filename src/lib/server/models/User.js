@@ -44,9 +44,6 @@ userSchema.statics.hashPassword = async function(password) {
   return await bcrypt.hash(password, salt);
 };
 
-// Clear model cache in dev environments to prevent schema caching mismatch
-if (mongoose.models && mongoose.models.User) {
-  delete mongoose.models.User;
-}
+// Ensure safe model compilation across serverless invocations
+export const User = mongoose.models.User || mongoose.model('User', userSchema);
 
-export const User = mongoose.model('User', userSchema);

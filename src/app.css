@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --color-primary-dark: #601D49;
+  --color-primary: #BD5579;
+  --color-soft-accent: #EA9D9D;
+  --color-light-bg: #FFEBB8;
+  
+  --color-neutral-bg: #FAF7F8;
+  --color-card-bg: #FFFFFF;
+  --color-border-subtle: #F0D5DD;
+  --color-border-soft: #EA9D9D;
+  
+  --color-text-main: #601D49;
+  --color-text-body: #4A1A38;
+  --color-text-muted: #82476B;
+}
+
+:root {
+  --primary-dark: #601D49;
+  --primary: #BD5579;
+  --soft-accent: #EA9D9D;
+  --light-bg: #FFEBB8;
+  --neutral-bg: #FAF7F8;
+  --card-bg: #FFFFFF;
+  --border-subtle: #F0D5DD;
+  --border-soft: #EA9D9D;
+  --text-main: #601D49;
+  --text-body: #4A1A38;
+  --text-muted: #82476B;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #601D49;
+  background-color: #FAF7F8;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Hierarchy Scale */
+.page-title {
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #601D49;
+  letter-spacing: -0.02em;
+}
+
+.section-heading {
+  font-size: 1.375rem; /* 22px */
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #601D49;
+  letter-spacing: -0.015em;
+}
+
+.card-heading {
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: #601D49;
+}
+
+.body-text {
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.5rem;
+  font-weight: 400;
+  color: #4A1A38;
+}
+
+.label-text {
+  font-size: 0.84375rem; /* 13.5px */
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #601D49;
+}
+
+.small-supporting-text {
+  font-size: 0.78125rem; /* 12.5px */
+  line-height: 1.125rem;
+  color: #82476B;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F8;
+}
+::-webkit-scrollbar-thumb {
+  background: #EA9D9D;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BD5579;
+}

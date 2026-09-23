@@ -16,7 +16,7 @@ import json
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, ".."))
-ML_API_DIR = os.path.join(PROJECT_ROOT, "ml-api")
+ML_API_DIR = os.path.join(PROJECT_ROOT, "ml_api")
 if ML_API_DIR not in sys.path:
     sys.path.insert(0, ML_API_DIR)
 if PROJECT_ROOT not in sys.path:

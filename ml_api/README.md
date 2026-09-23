@@ -15,21 +15,21 @@ Dedicated Python + FastAPI microservice serving the trained **Random Forest Prim
 ### 1. Requirements
 Ensure Python 3.10+ is installed:
 ```bash
-pip install -r ml-api/requirements.txt
+pip install -r ml_api/requirements.txt
 ```
 
-### 2. Start Service
+### 2. Start Service (Local Execution from Repository Root)
 Run via Uvicorn:
 ```bash
-python -m uvicorn ml-api.main:app --host 127.0.0.1 --port 8000
+uvicorn ml_api.main:app --host 127.0.0.1 --port 8000
 ```
 
-Or run directly:
-```bash
-python ml-api/main.py
-```
+### 3. Deploying on Render (Web Service)
+- **Root Directory**: Leave blank (root of repo)
+- **Build Command**: `pip install -r ml_api/requirements.txt`
+- **Start Command**: `uvicorn ml_api.main:app --host 0.0.0.0 --port $PORT`
 
-### 3. API Endpoints
+### 4. API Endpoints
 
 - `GET /api/ml/health`: Returns model connection health, target classes, and feature count.
 - `POST /api/ml/predict`: Accepts questionnaire payload, executes preprocessor + Random Forest inference, generates SHAP local feature attributions, and returns structured prediction payload.

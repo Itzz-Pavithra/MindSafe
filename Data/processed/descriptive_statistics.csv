@@ -1,0 +1,5 @@
+Scale_Variable,Valid_N,Missing_N,Mean,Median,Mode,Std_Dev,Min,Max
+Emotional_Impact_Severity (1 to 5),509,10,2.1,2.0,1.0,1.208,1.0,5.0
+Mental_Health_Impact (Score 0 to 3),514,5,0.922,1.0,0.0,0.984,0.0,3.0
+Cyberbullying_Frequency (Score 0 to 4),512,7,0.951,1.0,0.0,1.001,0.0,4.0
+Daily_Usage_Hours (Score 0 to 3),519,0,1.516,1.0,1.0,0.887,0.0,3.0

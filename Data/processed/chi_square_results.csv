@@ -1,0 +1,9 @@
+Variable_1,Variable_2,Sample_Size_N,Chi_Square_Statistic,Degrees_of_Freedom,p_value,Significance_alpha_0_05,Min_Expected_Cell_Freq,Interpretation
+Experienced_Cyberbullying,Mental_Health_Impact,513,146.281,3,1.670935408839286e-31,True,13.43,Statistically significant association detected (p < 0.05). There is sample evidence of dependence between Experienced_Cyberbullying and Mental Health Impact.
+Cyberbullying_Frequency,Mental_Health_Impact,511,51.7444,12,6.880849308073755e-07,True,1.17,Statistically significant association detected (p < 0.05). There is sample evidence of dependence between Cyberbullying_Frequency and Mental Health Impact.
+Incident_Platform,Mental_Health_Impact,508,21.7365,12,0.04058161654129159,True,2.42,Statistically significant association detected (p < 0.05). There is sample evidence of dependence between Incident_Platform and Mental Health Impact.
+Witnessed_Cyberbullying,Mental_Health_Impact,514,3.3403,3,0.3420776884666297,False,19.3,No statistically significant association detected (p >= 0.05). Null hypothesis of independence cannot be rejected.
+Daily_Usage_Hours,Mental_Health_Impact,514,8.9815,9,0.4389880870852534,False,4.39,No statistically significant association detected (p >= 0.05). Null hypothesis of independence cannot be rejected.
+Gender,Mental_Health_Impact,514,13.5883,9,0.13774278139162469,False,0.56,No statistically significant association detected (p >= 0.05). Null hypothesis of independence cannot be rejected.
+Posted_Offensive_Content,Mental_Health_Impact,514,11.7903,6,0.0668140085789334,False,1.99,No statistically significant association detected (p >= 0.05). Null hypothesis of independence cannot be rejected.
+Harassment_Context_Area,Mental_Health_Impact,505,24.4424,21,0.27212043782523,False,0.4,No statistically significant association detected (p >= 0.05). Null hypothesis of independence cannot be rejected.

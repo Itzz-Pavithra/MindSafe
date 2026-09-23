@@ -17,13 +17,30 @@ const assessmentResultSchema = new mongoose.Schema({
     enum: ['Not at all', 'Slightly', 'Moderately', 'Severely', null],
     default: null
   },
+  probabilities: {
+    type: mongoose.Schema.Types.Mixed,
+    default: null
+  },
+  topFeatures: {
+    type: Array,
+    default: []
+  },
+  modelVersion: {
+    type: String,
+    default: 'MindSafe Primary Random Forest (Scenario B)'
+  },
+  disclaimer: {
+    type: String,
+    default: 'This is an analytical result from the project ML model and is not a medical diagnosis.'
+  },
   indicators: {
     type: Array,
     default: []
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    index: true
   }
 });
 

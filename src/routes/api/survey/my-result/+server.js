@@ -28,25 +28,29 @@ export async function GET({ locals }) {
       });
     }
 
-    // Check if an assessmentResult exists (from future ML model)
+    // Retrieve latest ML assessment result
     const latestResult = await AssessmentResult.findOne({ userId: locals.user.id })
       .sort({ createdAt: -1 })
       .lean();
+
+    const hasResult = !!latestResult && !!latestResult.classification;
 
     return json({
       success: true,
       hasAssessment: true,
       submittedAt: latestResponse.submittedAt,
-      // In this phase: No fake predictions are returned.
-      hasResult: !!latestResult && !!latestResult.classification,
-      result: latestResult ? {
+      hasResult,
+      result: hasResult ? {
         classification: latestResult.classification,
-        indicators: latestResult.indicators,
+        probabilities: latestResult.probabilities || null,
+        topFeatures: latestResult.topFeatures || [],
+        modelVersion: latestResult.modelVersion || 'MindSafe Primary Random Forest (Scenario B)',
+        disclaimer: latestResult.disclaimer || 'This is an analytical result from the project ML model and is not a medical diagnosis.',
         createdAt: latestResult.createdAt
       } : null,
       mlStatus: {
-        connected: false,
-        message: 'Prediction will be available after the ML model is connected.'
+        connected: hasResult,
+        message: hasResult ? 'Primary ML model inference active.' : 'Assessment recorded. Prediction pending execution.'
       }
     });
   } catch (error) {

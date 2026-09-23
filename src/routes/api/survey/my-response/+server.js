@@ -1,6 +1,7 @@
 import { json } from '@sveltejs/kit';
 import { connectDB } from '$lib/server/db.js';
 import { SurveyResponse } from '$lib/server/models/SurveyResponse.js';
+import { AssessmentResult } from '$lib/server/models/AssessmentResult.js';
 
 export async function GET({ locals }) {
   if (!locals.user) {
@@ -18,11 +19,25 @@ export async function GET({ locals }) {
       .sort({ submittedAt: -1 })
       .lean();
 
+    // Query participant's assessment and ML prediction history
+    const results = await AssessmentResult.find({ userId: locals.user.id })
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .lean();
+
+    const history = results.map(r => ({
+      id: r._id.toString(),
+      createdAt: r.createdAt,
+      classification: r.classification,
+      modelVersion: r.modelVersion || 'MindSafe Primary Random Forest (Scenario B)'
+    }));
+
     if (!latest) {
       return json({
         success: true,
         hasResponse: false,
-        response: null
+        response: null,
+        history: []
       });
     }
 
@@ -33,7 +48,8 @@ export async function GET({ locals }) {
         id: latest._id.toString(),
         responses: latest.responses,
         submittedAt: latest.submittedAt
-      }
+      },
+      history
     });
   } catch (error) {
     console.error('Fetch my-response error:', error);

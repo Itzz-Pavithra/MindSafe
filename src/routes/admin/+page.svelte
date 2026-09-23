@@ -140,42 +140,62 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#F0D5DD] pb-3">
       <div>
         <span class="text-[11px] font-bold uppercase tracking-wider text-[#BD5579]">
-          Phase 2 Machine Learning Architecture
+          Phase 4 Machine Learning Architecture
         </span>
-        <h2 class="section-heading text-lg">Mental Health Impact Prediction Pipeline</h2>
+        <h2 class="section-heading text-lg">Mental Health Impact Prediction & Explainability Pipeline</h2>
       </div>
 
       <!-- Status Badge -->
-      <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#FFEBB8] text-[#601D49] border border-[#EA9D9D]/60 self-start sm:self-auto">
-        ML Model: Not Connected
+      <span class="px-3 py-1 rounded-full text-xs font-bold border self-start sm:self-auto
+        {mlStatus?.connected 
+          ? 'bg-[#EBF7EE] text-[#22543D] border-[#48BB78]/50' 
+          : 'bg-[#FFEBB8] text-[#601D49] border-[#EA9D9D]/60'}">
+        {mlStatus?.connected ? 'ML Service: Connected & Active' : 'ML Service: Offline'}
       </span>
     </div>
 
-    <!-- Informational Message per Section 7-F -->
-    <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-2">
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-[#BD5579] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-        </svg>
-        <span class="text-xs font-bold text-[#601D49]">ML model not connected yet.</span>
+    <!-- Informational Message -->
+    <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-[#BD5579] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+          <span class="text-xs font-bold text-[#601D49]">
+            {mlStatus?.connected ? 'Primary Random Forest Classifier & SHAP Engine Operational' : 'ML Service Offline'}
+          </span>
+        </div>
+        <p class="text-xs text-[#82476B] leading-relaxed">
+          Trained on empirical survey data (Scenario B, Leakage-Controlled). Computes multiclass outcome probabilities and Tree SHAP feature attributions on participant submissions.
+        </p>
       </div>
-      <p class="text-xs text-[#82476B] leading-relaxed">
-        The backend API endpoints (<code class="text-[#BD5579]">POST /api/ml/predict</code> and <code class="text-[#BD5579]">GET /api/ml/status</code>) and service abstraction layer (<code class="text-[#601D49]">mlService.js</code>) are prepared. Random Forest supervised multiclass training, dataset preprocessing, train/test evaluation, and SHAP explainability will be integrated seamlessly in Phase 2 without altering the frontend UI.
-      </p>
+
+      <a href="/admin/ml-analysis" class="shrink-0">
+        <Button variant="primary" class="px-4 py-2 text-xs font-semibold">
+          <span>View ML & SHAP Analytics</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </Button>
+      </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-1">
       <div class="p-3 rounded-lg bg-[#FAF7F8] border border-[#F0D5DD]">
         <span class="text-[10px] text-[#82476B] uppercase font-bold block">Target Variable</span>
         <span class="text-xs font-bold text-[#601D49] mt-0.5 block">Mental Health Impact</span>
       </div>
       <div class="p-3 rounded-lg bg-[#FAF7F8] border border-[#F0D5DD]">
         <span class="text-[10px] text-[#82476B] uppercase font-bold block">Classification Task</span>
-        <span class="text-xs font-bold text-[#601D49] mt-0.5 block">Supervised Multiclass (4 Classes)</span>
+        <span class="text-xs font-bold text-[#601D49] mt-0.5 block">Multiclass (4 Classes)</span>
       </div>
       <div class="p-3 rounded-lg bg-[#FAF7F8] border border-[#F0D5DD]">
-        <span class="text-[10px] text-[#82476B] uppercase font-bold block">Proposed Classifier</span>
-        <span class="text-xs font-bold text-[#601D49] mt-0.5 block">Random Forest + SHAP</span>
+        <span class="text-[10px] text-[#82476B] uppercase font-bold block">Test Accuracy</span>
+        <span class="text-xs font-bold text-[#BD5579] mt-0.5 block">48.54% (Macro F1: 0.3275)</span>
+      </div>
+      <div class="p-3 rounded-lg bg-[#FAF7F8] border border-[#F0D5DD]">
+        <span class="text-[10px] text-[#82476B] uppercase font-bold block">Explainability</span>
+        <span class="text-xs font-bold text-[#601D49] mt-0.5 block">SHAP TreeExplainer</span>
       </div>
     </div>
   </Card>

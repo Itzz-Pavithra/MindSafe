@@ -1,0 +1,9 @@
+Factor_Analyzed,Target_Variable,Chi2_Statistic,p_value_formatted,Cramers_V,Association_Strength,Effect_Interpretation
+Experienced Cyberbullying (Q5),Mental Health Impact,146.281,1.6709e-31,0.534,Large / Strong,Large / Strong practical association with Mental Health Impact (V = 0.534).
+Cyberbullying Frequency (Q11),Mental Health Impact,51.744,6.8808e-07,0.184,Small / Weak,Small / Weak practical association with Mental Health Impact (V = 0.184).
+Incident Platform (Q10),Mental Health Impact,21.736,4.0582e-02,0.119,Small / Weak,Small / Weak practical association with Mental Health Impact (V = 0.119).
+Witnessed Cyberbullying (Q6),Mental Health Impact,3.34,3.4208e-01,0.081,Negligible,Negligible practical association with Mental Health Impact (V = 0.081).
+Daily Usage Hours (Q4),Mental Health Impact,8.981,4.3899e-01,0.076,Negligible,Negligible practical association with Mental Health Impact (V = 0.076).
+Gender Identity (Q2),Mental Health Impact,13.588,1.3774e-01,0.094,Negligible,Negligible practical association with Mental Health Impact (V = 0.094).
+Posted Offensive Content (Q7),Mental Health Impact,11.79,6.6814e-02,0.107,Small / Weak,Small / Weak practical association with Mental Health Impact (V = 0.107).
+Harassment Context / Area (Q17),Mental Health Impact,24.442,2.7212e-01,0.127,Small / Weak,Small / Weak practical association with Mental Health Impact (V = 0.127).

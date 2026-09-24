@@ -1,0 +1,13 @@
+Audit_Checkpoint,Specification_Finding
+1. Raw Dataset Dimensions,521 rows × 19 columns
+2. Cleaned Analytical Cohort,519 rows (2 completely blank submissions removed)
+3. Single Target Variable,Mental_Health_Impact (Ordinal Multiclass)
+4. Number of Target Classes,"4 discrete classes: Not at all, Slightly, Moderately, Severely"
+5. Target Leakage Prevention,Excluded Q13 (Negative Symptoms) and Q14 (Emotional Severity Rating)
+6. Retained Predictor Questionnaire Items,"13 survey questions (Demographics, Exposure, Platform, Frequency, Support, Action)"
+7. Categorical Encoding Methods Applied,"Ordinal Encoding (Ranked), One-Hot (Nominal), Multi-Hot (Checkboxes)"
+8. Final Numeric Predictor Features,54 numeric features generated from 13 questionnaire items
+9. Training Partition Size,411 records (80.0%)
+10. Testing Partition Size,103 records (20.0%)
+11. Stratified Split Random State,random_state = 42 (Stratified by 4 target classes)
+12. Data Snooping Prevention Status,CONFIRMED: Preprocessor fitted strictly on training partition; test set held out

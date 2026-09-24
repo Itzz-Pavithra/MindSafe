@@ -1,0 +1,7 @@
+Variable_1,Variable_2,Sample_N,Spearman_rho,p_value,p_value_formatted,Direction,Strength,Interpretation
+Cyberbullying Encounter Frequency,Mental Health Impact Rank,511,0.242,3.0154101828002826e-08,3.0154e-08,Positive,Weak,"Statistically significant positive monotonic correlation (rho = 0.242, p < 0.05). Weak association."
+Emotional Impact Severity (1–5),Mental Health Impact Rank,509,0.3185,1.8462635161528003e-13,1.8463e-13,Positive,Moderate,"Statistically significant positive monotonic correlation (rho = 0.318, p < 0.05). Moderate association."
+Cyberbullying Encounter Frequency,Emotional Impact Severity (1–5),506,0.2776,2.0835179749531227e-10,2.0835e-10,Positive,Weak,"Statistically significant positive monotonic correlation (rho = 0.278, p < 0.05). Weak association."
+Daily Usage Hours Midpoint,Mental Health Impact Rank,138,0.0292,0.7335022576494362,7.3350e-01,None,None,"No statistically significant correlation detected (rho = 0.029, p = 0.734)."
+Daily Usage Hours Midpoint,Emotional Impact Severity (1–5),136,0.03,0.7284367971272979,7.2844e-01,None,None,"No statistically significant correlation detected (rho = 0.030, p = 0.728)."
+Daily Usage Hours Midpoint,Cyberbullying Encounter Frequency,138,-0.0873,0.3087251865798057,3.0873e-01,None,None,"No statistically significant correlation detected (rho = -0.087, p = 0.309)."

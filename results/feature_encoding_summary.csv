@@ -1,0 +1,14 @@
+Question_Number,Survey_Question,Question_Type,Encoding_Method,Generated_Features_Count,Feature_Names
+Q1,What is your age category?,Single-choice Ordinal,Ordinal Encoding,1,Age_Ordinal
+Q2,What is your gender identity?,Single-choice Nominal,One-Hot Encoding,4,"Gender_Female, Gender_Male, Gender_Non-binary, Gender_Prefer not to say"
+Q3,Which social media platforms do you use regularly?,Multi-choice (Checkboxes),Multi-Hot Encoding,6,"Platform_Used_Facebook, Instagram, Others, WhatsApp, X (Twitter), YouTube"
+Q4,How many hours do you spend on social media per day?,Single-choice Ordinal,Ordinal Encoding,1,Daily_Usage_Ordinal
+Q5,Have you personally experienced cyberbullying or harassment?,Single-choice Binary,Binary Indicator,1,Experienced_Cyberbullying_Binary
+Q6,Have you ever witnessed someone being cyberbullied online?,Single-choice Binary,Binary Indicator,1,Witnessed_Cyberbullying_Binary
+Q7,Have you ever posted a message that could have hurt someone?,Single-choice Nominal,One-Hot Encoding,3,"Posted_Offensive_No, Posted_Offensive_Not Sure, Posted_Offensive_Yes"
+Q9,What type of cyberbullying have you experienced or observed?,Multi-choice (Checkboxes),Multi-Hot Encoding,10,"Bullying_Type_Body Shaming, Fake Profile, Fake Rumors, Hate Speech, Impersonation, Offensive Comments, Other, Sexual Harassment, Stalking, Threats"
+Q10,On which social media platform did the incident occur?,Single-choice Nominal,One-Hot Encoding,5,"Incident_Platform_Facebook, Instagram, Others, WhatsApp, YouTube"
+Q11,How often have you experienced cyberbullying online?,Single-choice Ordinal,Ordinal Encoding,1,Cyberbullying_Frequency_Ordinal
+Q15,Did you seek help from anyone?,Multi-choice (Checkboxes),Multi-Hot Encoding,7,"Sought_Help_Counselor, Family, Friends, Helpline, No, Psychologist, Teacher"
+Q17,In which area or context did you experience cyberbullying?,Single-choice Nominal,One-Hot Encoding,8,"Context_Area_Family, Friends Circle, Online Gaming, Other, School / College, Social Media Community, Unknown Stranger, Workplace"
+Q18,What action did you take after experiencing cyberbullying?,Multi-choice (Checkboxes),Multi-Hot Encoding,6,"Action_Taken_Blocked the user, Ignored it, Reported the account, Sought Professional Help, Told Friends / Family, Took No Action"

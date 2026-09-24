@@ -1,4 +1,5 @@
 import { SurveyResponse } from '../models/SurveyResponse.js';
+import { AssessmentResult } from '../models/AssessmentResult.js';
 
 /**
  * MindSafe Statistical Analysis Engine
@@ -406,18 +407,30 @@ export const statisticsService = {
 
   // 3. Primary ML Outcome: Mental Health Impact
   async getMentalHealthAnalysis() {
-    const responses = await SurveyResponse.find({}).lean();
-    if (!responses.length) {
+    const assessments = await AssessmentResult.find({}).lean();
+    if (!assessments.length) {
       return {
         hasData: false,
         totalResponses: 0,
-        message: 'No survey data available yet.'
+        message: 'No assessment data available yet.',
+        targetVariable: 'Mental Health Impact',
+        targetClasses: ['Not at all', 'Slightly', 'Moderately', 'Severely'],
+        distribution: {
+          'Not at all': 0,
+          'Slightly': 0,
+          'Moderately': 0,
+          'Severely': 0
+        },
+        percentages: {
+          'Not at all': 0,
+          'Slightly': 0,
+          'Moderately': 0,
+          'Severely': 0
+        }
       };
     }
 
-    const total = responses.length;
-    const cleaned = responses.map(this.getStandardized);
-
+    const total = assessments.length;
     const targetClasses = ['Not at all', 'Slightly', 'Moderately', 'Severely'];
     const distribution = {
       'Not at all': 0,
@@ -426,34 +439,45 @@ export const statisticsService = {
       'Severely': 0
     };
 
-    cleaned.forEach(r => {
-      const cat = r.emotionalWellbeing;
-      if (distribution[cat] !== undefined) {
-        distribution[cat]++;
-      } else {
-        distribution['Not at all']++;
+    assessments.forEach(a => {
+      const cls = a.classification;
+      if (cls && distribution[cls] !== undefined) {
+        distribution[cls]++;
       }
     });
 
     const percentages = {};
     for (const [k, v] of Object.entries(distribution)) {
-      percentages[k] = Math.round((v / total) * 100);
+      percentages[k] = total > 0 ? Math.round((v / total) * 100) : 0;
     }
 
-    // Cross-tabulation with cyberbullying experience
+    // Cross-tabulation with cyberbullying experience if survey responses exist
     const crossWithExperience = {
       experienced: { 'Not at all': 0, 'Slightly': 0, 'Moderately': 0, 'Severely': 0 },
       notExperienced: { 'Not at all': 0, 'Slightly': 0, 'Moderately': 0, 'Severely': 0 }
     };
 
-    cleaned.forEach(r => {
-      const target = distribution[r.emotionalWellbeing] !== undefined ? r.emotionalWellbeing : 'Not at all';
-      if (r.cyberbullyingExperience === 'Yes') {
-        crossWithExperience.experienced[target]++;
-      } else {
-        crossWithExperience.notExperienced[target]++;
+    try {
+      const surveyIds = assessments.map(a => a.responseId).filter(Boolean);
+      if (surveyIds.length > 0) {
+        const surveys = await SurveyResponse.find({ _id: { $in: surveyIds } }).lean();
+        const surveyMap = new Map();
+        surveys.forEach(s => surveyMap.set(s._id.toString(), s));
+
+        assessments.forEach(a => {
+          const s = a.responseId ? surveyMap.get(a.responseId.toString()) : null;
+          const exp = (s?.responses?.q5_exp === 'Yes' || s?.responses?.cyberbullyingExperience === 'Yes')
+            ? 'experienced'
+            : 'notExperienced';
+          const cls = a.classification;
+          if (cls && crossWithExperience[exp][cls] !== undefined) {
+            crossWithExperience[exp][cls]++;
+          }
+        });
       }
-    });
+    } catch (crossErr) {
+      console.warn('[MentalHealthAnalysis] Cross-tabulation notice:', crossErr.message);
+    }
 
     return {
       hasData: true,
@@ -462,7 +486,12 @@ export const statisticsService = {
       targetClasses,
       distribution,
       percentages,
-      crossWithExperience
+      crossWithExperience,
+      records: assessments.map(a => ({
+        id: a._id.toString(),
+        classification: a.classification,
+        createdAt: a.createdAt
+      }))
     };
   },
 

@@ -1,7 +1,7 @@
-Variable_1,Variable_2,N,Spearman_rho,Spearman_p,Pearson_r,Pearson_p,Appropriate_Metric,Interpretation
-Cyberbullying_Frequency,Mental_Health_Impact,511,0.242,3.0154e-08,0.2476,1.4209e-08,Spearman rho (Ordinal/Ranked Data),"Significant monotonic correlation (rho = 0.242, p < 0.05)."
-Emotional_Impact_Severity,Mental_Health_Impact,509,0.3185,1.8463e-13,0.3399,3.1001e-15,Spearman rho (Ordinal/Ranked Data),"Significant monotonic correlation (rho = 0.318, p < 0.05)."
-Cyberbullying_Frequency,Emotional_Impact_Severity,506,0.2776,2.0835e-10,0.2733,4.0239e-10,Spearman rho (Ordinal/Ranked Data),"Significant monotonic correlation (rho = 0.278, p < 0.05)."
-Daily_Usage_Hours,Mental_Health_Impact,514,-0.0183,6.7939e-01,-0.0201,6.4906e-01,Spearman rho (Ordinal/Ranked Data),"Non-significant correlation (rho = -0.018, p >= 0.05)."
-Daily_Usage_Hours,Emotional_Impact_Severity,509,0.0358,4.2000e-01,0.021,6.3649e-01,Spearman rho (Ordinal/Ranked Data),"Non-significant correlation (rho = 0.036, p >= 0.05)."
-Daily_Usage_Hours,Cyberbullying_Frequency,512,-0.0583,1.8805e-01,-0.1093,1.3321e-02,Spearman rho (Ordinal/Ranked Data),"Non-significant correlation (rho = -0.058, p >= 0.05)."
+Variable_1,Variable_2,N,Spearman_rho,Spearman_p,Spearman_p_formatted,Direction,Association_Strength,Pearson_r,Pearson_p,Appropriate_Metric,Interpretation
+Cyberbullying_Frequency,Mental_Health_Impact,511,0.242,3.0154101828002826e-08,3.0154e-08,Positive,Weak,0.2476,1.4209e-08,Spearman rho (Ordinal / Likert Data),"Weak positive monotonic association (rho = 0.242, p < 0.05)."
+Emotional_Impact_Severity,Mental_Health_Impact,509,0.3185,1.8462635161528003e-13,1.8463e-13,Positive,Moderate,0.3399,3.1001e-15,Spearman rho (Ordinal / Likert Data),"Moderate positive monotonic association (rho = 0.318, p < 0.05)."
+Cyberbullying_Frequency,Emotional_Impact_Severity,506,0.2776,2.0835179749531227e-10,2.0835e-10,Positive,Weak,0.2733,4.0239e-10,Spearman rho (Ordinal / Likert Data),"Weak positive monotonic association (rho = 0.278, p < 0.05)."
+Daily_Usage_Hours,Mental_Health_Impact,514,-0.0183,0.6793863493364727,6.7939e-01,Negative,Weak,-0.0201,6.4906e-01,Spearman rho (Ordinal / Likert Data),"Non-significant correlation (rho = -0.018, p >= 0.05)."
+Daily_Usage_Hours,Emotional_Impact_Severity,509,0.0358,0.4199954605227241,4.2000e-01,Positive,Weak,0.021,6.3649e-01,Spearman rho (Ordinal / Likert Data),"Non-significant correlation (rho = 0.036, p >= 0.05)."
+Daily_Usage_Hours,Cyberbullying_Frequency,512,-0.0583,0.18804505816585843,1.8805e-01,Negative,Weak,-0.1093,1.3321e-02,Spearman rho (Ordinal / Likert Data),"Non-significant correlation (rho = -0.058, p >= 0.05)."

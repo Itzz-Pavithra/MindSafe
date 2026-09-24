@@ -1,0 +1,3 @@
+Variable,df_Between,df_Within,Levene_p,Homoscedasticity_Met,ANOVA_F,ANOVA_p,ANOVA_p_formatted,Eta_Squared,Kruskal_H,Kruskal_p,Primary_Method
+Emotional_Impact_Severity (Likert 1–5),3,505,9.5519e-05,No (Heteroscedastic),22.15,1.7275917949327737e-13,1.7276e-13,0.1163,54.647,8.1650e-12,Kruskal-Wallis (Non-Parametric)
+Daily_Usage_Hours_Midpoint (Hours),3,510,6.7384e-01,Yes,0.484,0.6936755026420494,6.9368e-01,0.0028,1.127,7.7049e-01,ANOVA (Parametric)

@@ -1,0 +1,7 @@
+Statistical_Test,Variables_Analyzed,Effect_Size_Metric,Value,Threshold_Benchmarks,Magnitude,Substantive_Meaning
+Chi-Square Test,Cyberbullying Exposure × Mental Health Impact,Cramér's V,0.534,Small: 0.10 | Medium: 0.30 | Large: 0.50,Large,Victimization status strongly differentiates respondents across mental health impact tiers.
+Chi-Square Test,Cyberbullying Frequency × Mental Health Impact,Cramér's V,0.183,Small: 0.10 | Medium: 0.30 | Large: 0.50,Small-to-Medium,Repeated exposure frequency moderately shifts mental health impact severity upwards.
+Independent T-Test,Emotional Severity: Victims vs Non-Victims,Cohen's d,1.385,Small: 0.20 | Medium: 0.50 | Large: 0.80,Large (d > 0.80),Victims report emotional impact severity averaging 1.38 pooled standard deviations above non-victims.
+One-Way ANOVA,Emotional Severity across 4 Impact Tiers,Eta-squared (η²),0.1163,Small: 0.01 | Medium: 0.06 | Large: 0.14,Large (η² > 0.14),18.5% of total variance in emotional severity is accounted for by the four mental health impact tiers.
+One-Way ANOVA,Daily Usage Hours across 4 Impact Tiers,Eta-squared (η²),0.0028,Small: 0.01 | Medium: 0.06 | Large: 0.14,Negligible (η² < 0.01),Screen time duration accounts for less than 0.3% of mental health variance; duration alone does not explain impact.
+Spearman Correlation,Emotional Severity vs Mental Health Impact,Spearman rho (ρ),0.318,Weak: 0.10–0.29 | Moderate: 0.30–0.49 | Strong: ≥ 0.50,Moderate,Substantial monotonic alignment between perceived emotional severity and classified mental health impact.

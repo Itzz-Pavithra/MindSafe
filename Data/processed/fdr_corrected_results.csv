@@ -1,22 +1,22 @@
-Hypothesis_Test,Raw_p_value,Rank_i,BH_Critical_Value,Adjusted_p_value (q),Significant_After_FDR,Raw_p_value_formatted,Adjusted_p_value_formatted
-Chi-Square: Experienced_Cyberbullying,1.670935408839286e-31,1,0.002380952380952381,1.914238060117624e-30,True,1.6709e-31,1.9142e-30
+Hypothesis_Test,Raw_p_value,Rank_i,BH_Critical_Threshold,Adjusted_p_value (q),Significant_After_FDR,Raw_p_value_formatted,Adjusted_p_value_formatted
+Chi-Square: Personally Experienced Cyberbullying (Q5) × Mental Health Impact,1.670935408839286e-31,1,0.002380952380952381,1.914238060117624e-30,True,1.6709e-31,1.9142e-30
 Mann-Whitney U: Emotional Severity across Cyberbullying Exp,1.8230838667786897e-31,2,0.004761904761904762,1.914238060117624e-30,True,1.8231e-31,1.9142e-30
 Welch's T-Test: Emotional Severity across Cyberbullying Exp,1.0794932784384448e-29,3,0.007142857142857143,7.556452949069113e-29,True,1.0795e-29,7.5565e-29
 Fisher's Exact: Cyberbullying Exposure × Elevated Impact,8.589933730526798e-26,4,0.009523809523809525,4.509715208526569e-25,True,8.5899e-26,4.5097e-25
-ANOVA: Emotional_Impact_Severity (1–5) across 4 Impact Groups,1.7275917949327737e-13,5,0.011904761904761904,6.461922306534801e-13,True,1.7276e-13,6.4619e-13
+One-Way ANOVA: Emotional_Impact_Severity (Likert 1–5) across 4 Impact Groups,1.7275917949327737e-13,5,0.011904761904761904,6.461922306534801e-13,True,1.7276e-13,6.4619e-13
 Spearman Correlation: Emotional_Impact_Severity vs Mental_Health_Impact,1.8462635161528003e-13,6,0.014285714285714285,6.461922306534801e-13,True,1.8463e-13,6.4619e-13
-Kruskal-Wallis: Emotional_Impact_Severity (1–5) across 4 Impact Groups,8.165021936080566e-12,7,0.016666666666666666,2.44950658082417e-11,True,8.1650e-12,2.4495e-11
+Kruskal-Wallis: Emotional_Impact_Severity (Likert 1–5) across 4 Impact Groups,8.165021936080566e-12,7,0.016666666666666666,2.44950658082417e-11,True,8.1650e-12,2.4495e-11
 Spearman Correlation: Cyberbullying_Frequency vs Emotional_Impact_Severity,2.0835179749531227e-10,8,0.01904761904761905,5.469234684251947e-10,True,2.0835e-10,5.4692e-10
 Spearman Correlation: Cyberbullying_Frequency vs Mental_Health_Impact,3.0154101828002826e-08,9,0.02142857142857143,7.035957093200658e-08,True,3.0154e-08,7.0360e-08
-Chi-Square: Cyberbullying_Frequency,6.880849308073755e-07,10,0.023809523809523808,1.4449783546954886e-06,True,6.8808e-07,1.4450e-06
-Chi-Square: Incident_Platform,0.04058161654129159,11,0.026190476190476195,0.07747399521519303,False,4.0582e-02,7.7474e-02
-Chi-Square: Posted_Offensive_Content,0.0668140085789334,12,0.02857142857142857,0.11692451501313345,False,6.6814e-02,1.1692e-01
-Chi-Square: Gender,0.13774278139162469,13,0.030952380952380953,0.2225075699403168,False,1.3774e-01,2.2251e-01
+Chi-Square: Cyberbullying Encounter Frequency (Q11) × Mental Health Impact,6.880849308073755e-07,10,0.023809523809523808,1.4449783546954886e-06,True,6.8808e-07,1.4450e-06
+Chi-Square: Incident Social Media Platform (Q10) × Mental Health Impact,0.04058161654129159,11,0.026190476190476195,0.07747399521519303,False,4.0582e-02,7.7474e-02
+Chi-Square: Posted Offensive Content (Q7) × Mental Health Impact,0.0668140085789334,12,0.02857142857142857,0.11692451501313345,False,6.6814e-02,1.1692e-01
+Chi-Square: Gender (Q2) × Mental Health Impact,0.13774278139162469,13,0.030952380952380953,0.2225075699403168,False,1.3774e-01,2.2251e-01
 Spearman Correlation: Daily_Usage_Hours vs Cyberbullying_Frequency,0.18804505816585843,14,0.03333333333333333,0.2820675872487876,False,1.8805e-01,2.8207e-01
-Chi-Square: Harassment_Context_Area,0.27212043782523,15,0.03571428571428572,0.380968612955322,False,2.7212e-01,3.8097e-01
-Chi-Square: Witnessed_Cyberbullying,0.3420776884666297,16,0.0380952380952381,0.4489769661124515,False,3.4208e-01,4.4898e-01
+Chi-Square: Harassment Context / Area (Q17) × Mental Health Impact,0.27212043782523,15,0.03571428571428572,0.380968612955322,False,2.7212e-01,3.8097e-01
+Chi-Square: Witnessed Cyberbullying (Q6) × Mental Health Impact,0.3420776884666297,16,0.0380952380952381,0.4489769661124515,False,3.4208e-01,4.4898e-01
 Spearman Correlation: Daily_Usage_Hours vs Emotional_Impact_Severity,0.4199954605227241,17,0.04047619047619048,0.5121527682661289,False,4.2000e-01,5.1215e-01
-Chi-Square: Daily_Usage_Category,0.4389880870852534,18,0.04285714285714286,0.5121527682661289,False,4.3899e-01,5.1215e-01
+Chi-Square: Daily Usage Hours Category (Q4) × Mental Health Impact,0.4389880870852534,18,0.04285714285714286,0.5121527682661289,False,4.3899e-01,5.1215e-01
 Spearman Correlation: Daily_Usage_Hours vs Mental_Health_Impact,0.6793863493364727,19,0.045238095238095244,0.7283592777741518,False,6.7939e-01,7.2836e-01
-ANOVA: Daily_Usage_Hours_Midpoint across 4 Impact Groups,0.6936755026420494,20,0.047619047619047616,0.7283592777741518,False,6.9368e-01,7.2836e-01
-Kruskal-Wallis: Daily_Usage_Hours_Midpoint across 4 Impact Groups,0.7704900027926856,21,0.05,0.7704900027926856,False,7.7049e-01,7.7049e-01
+One-Way ANOVA: Daily_Usage_Hours_Midpoint (Hours) across 4 Impact Groups,0.6936755026420494,20,0.047619047619047616,0.7283592777741518,False,6.9368e-01,7.2836e-01
+Kruskal-Wallis: Daily_Usage_Hours_Midpoint (Hours) across 4 Impact Groups,0.7704900027926856,21,0.05,0.7704900027926856,False,7.7049e-01,7.7049e-01

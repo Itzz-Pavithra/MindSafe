@@ -27,12 +27,8 @@
         appState.setUser(data.user);
         appState.addToast('success', 'Sign In Successful', `Welcome, ${data.user.name}!`);
         
-        // Role-based redirection per specification
-        if (data.user.role === 'admin') {
-          window.location.href = '/admin';
-        } else {
-          window.location.href = '/dashboard';
-        }
+        // Direct redirection to respondent workspace
+        window.location.href = '/dashboard';
       } else {
         errorMessage = data.error || 'Invalid credentials. Please verify your email and password.';
       }
@@ -146,19 +142,5 @@
         </p>
       </div>
     </Card>
-
-    <!-- Subtle Administrative Access Link -->
-    <div class="text-center pt-1">
-      <a 
-        href="/admin-login" 
-        class="text-[11px] text-[#82476B]/70 hover:text-[#601D49] transition-colors inline-flex items-center gap-1.5 font-medium hover:underline"
-      >
-        <svg class="w-3.5 h-3.5 text-[#BD5579]/70" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-        </svg>
-        <span>Admin Login</span>
-      </a>
-    </div>
-
   </div>
 </div>

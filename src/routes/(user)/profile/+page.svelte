@@ -83,7 +83,7 @@
 
       <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-1">
         <span class="text-[11px] font-semibold text-[#82476B]">Account Role</span>
-        <p class="text-xs font-bold text-[#601D49]">{appState.role === 'admin' ? 'Administrator' : 'Survey Participant'}</p>
+        <p class="text-xs font-bold text-[#601D49]">Survey Participant</p>
       </div>
 
       <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-1">

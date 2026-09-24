@@ -1,0 +1,3 @@
+Test,Group_1,Group_2,Mean_Diff,95_CI,Test_Stat,df,p_value,Effect_Size,Interpretation
+Welch's T-Test (Unequal Variance),"Yes (N=168, Mean=3.042, SD=1.264)","No (N=340, Mean=1.638, SD=0.863)",1.403,"[1.190, 1.616]",12.976,246.39,1.0795e-29,Cohen's d = 1.385 (Large),Statistically significant difference (p < 0.001). Large effect size.
+Mann-Whitney U Test (Non-Parametric),"Yes (Median=3.0, IQR=2.0)","No (Median=1.0, IQR=1.0)",1.403,N/A (Rank-Based),45683.0,N/A,1.8231e-31,Rank-Biserial r = -0.600,Robust confirmation: Significant difference in emotional impact distribution (p < 0.001).

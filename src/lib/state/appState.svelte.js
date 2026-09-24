@@ -41,9 +41,9 @@ class AppState {
       id: userData.id,
       email: userData.email,
       name: userData.name || (userData.email ? userData.email.split('@')[0] : 'User'),
-      roleLabel: userData.role === 'admin' ? 'Administrator' : 'Survey Respondent'
+      roleLabel: 'Survey Respondent'
     };
-    this.role = userData.role;
+    this.role = userData.role || 'survey_user';
     this.isLoggedIn = true;
   }
 
@@ -53,8 +53,7 @@ class AppState {
     this.isLoggedIn = false;
   }
 
-  async logout(isAdminExplicit = false) {
-    const isAdmin = this.role === 'admin' || isAdminExplicit;
+  async logout() {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
     } catch (e) {
@@ -62,7 +61,7 @@ class AppState {
     }
     this.clearUser();
     this.addToast('info', 'Signed Out', 'You have been successfully signed out.');
-    window.location.href = isAdmin ? '/admin-login' : '/login';
+    window.location.href = '/login';
   }
 
   addToast(type, title, message) {

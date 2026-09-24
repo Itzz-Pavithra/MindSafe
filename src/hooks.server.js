@@ -8,30 +8,10 @@ export async function handle({ event, resolve }) {
 
   const pathname = event.url.pathname;
 
-  // Protect Admin API endpoints
-  if (pathname.startsWith('/api/admin')) {
-    if (!user) {
-      return json({ success: false, error: 'Authentication required' }, { status: 401 });
-    }
-    if (user.role !== 'admin') {
-      return json({ success: false, error: 'Access restricted to administrators' }, { status: 403 });
-    }
-  }
-
   // Protect Survey submission API & ML API
   if (pathname.startsWith('/api/survey') || pathname.startsWith('/api/ml')) {
     if (!user) {
       return json({ success: false, error: 'Authentication required' }, { status: 401 });
-    }
-  }
-
-  // Protect Admin web routes
-  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
-    if (!user) {
-      throw redirect(303, '/admin-login');
-    }
-    if (user.role !== 'admin') {
-      throw redirect(303, '/dashboard');
     }
   }
 

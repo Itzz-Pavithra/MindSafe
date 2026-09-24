@@ -37,18 +37,7 @@ export async function POST({ request, cookies }) {
       return json({ success: false, error: 'Invalid email or password' }, { status: 401 });
     }
 
-    let isMatch = hash ? await bcrypt.compare(password, hash) : false;
-
-    // Fallback sync for admin account if credentials match environment
-    const envAdminEmail = (env.ADMIN_EMAIL || process.env.ADMIN_EMAIL || '').trim().toLowerCase();
-    const envAdminPassword = env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD;
-
-    if (!isMatch && envAdminEmail && trimmedEmail === envAdminEmail && envAdminPassword && password === envAdminPassword) {
-      const salt = await bcrypt.genSalt(12);
-      const newHash = await bcrypt.hash(envAdminPassword, salt);
-      await User.updateOne({ _id: user._id }, { $set: { passwordHash: newHash, role: 'admin' } });
-      isMatch = true;
-    }
+    const isMatch = hash ? await bcrypt.compare(password, hash) : false;
 
     if (!isMatch) {
       return json({ success: false, error: 'Invalid email or password' }, { status: 401 });

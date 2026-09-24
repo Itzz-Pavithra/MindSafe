@@ -12,7 +12,7 @@
     }
   });
 
-  let dashboardHref = $derived(appState.role === 'admin' ? '/admin' : '/dashboard');
+  let dashboardHref = '/dashboard';
 </script>
 
 <div class="min-h-screen bg-[#FAF7F8] flex flex-col justify-between font-sans text-[#601D49]">

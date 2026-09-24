@@ -24,7 +24,7 @@
           {title || 'MindSafe Workspace'}
         </h2>
         <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-[#FFEBB8] text-[#601D49] border border-[#EA9D9D]/60">
-          {appState.role === 'admin' ? 'Lead Researcher' : 'Survey Respondent'}
+          Survey Respondent
         </span>
       </div>
       <p class="text-[11px] text-[#82476B] hidden md:block mt-0.5">

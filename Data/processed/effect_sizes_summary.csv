@@ -1,0 +1,7 @@
+Domain,Test_Comparison,Metric,Value,Standard_Benchmark,Interpretation
+Categorical Association (Chi-Square),Experienced Cyberbullying × Mental Health Impact,Cramer's V,0.534,Small: 0.10 | Medium: 0.30 | Large: 0.50,Large practical association; cyberbullying exposure substantially partitions mental health impact tiers.
+Categorical Association (Chi-Square),Cyberbullying Frequency × Mental Health Impact,Cramer's V,0.183,Small: 0.10 | Medium: 0.30 | Large: 0.50,Small-to-medium association indicating repeated victimization elevates reporting severity.
+Two-Group Difference (T-Test),Emotional Impact Severity: Experienced (Yes vs No),Cohen's d,1.385,Small: 0.20 | Medium: 0.50 | Large: 0.80,Large effect size (d = 1.39); victims report emotional trauma > 1.3 standard deviations higher than non-victims.
+Multi-Group Variance (ANOVA),Emotional Impact Severity across 4 Target Groups,Eta-squared (η²),0.1163,Small: 0.01 | Medium: 0.06 | Large: 0.14,Large proportion of total variance explained by mental health impact category.
+Multi-Group Variance (ANOVA),Daily Usage Hours across 4 Target Groups,Eta-squared (η²),0.0028,Small: 0.01 | Medium: 0.06 | Large: 0.14,Negligible effect size (η² < 0.01); screen time alone does not meaningfully explain mental health tier differences.
+Monotonic Correlation,Emotional Impact Severity vs Mental Health Impact,Spearman rho (ρ),0.318,Weak: 0.10–0.29 | Moderate: 0.30–0.49 | Strong: ≥ 0.50,Moderate positive correlation reflecting consistent ordinal alignment.

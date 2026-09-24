@@ -1,0 +1,7 @@
+Comparison,N1,Mean_1,N2,Mean_2,Mean_Diff,U_Statistic,Raw_p_value,Bonferroni_p,Significant_alpha_0_05,Interpretation
+Not at all vs Slightly,224,1.72,137,2.12,0.39,12480.5,1.2073e-03,7.2438e-03,True,Statistically Significant Difference
+Not at all vs Moderately,224,1.72,107,2.5,0.78,8106.5,2.7532e-07,1.6519e-06,True,Statistically Significant Difference
+Not at all vs Severely,224,1.72,41,3.05,1.33,1927.0,1.7419e-10,1.0451e-09,True,Statistically Significant Difference
+Slightly vs Moderately,137,2.12,107,2.5,0.39,6152.5,2.4262e-02,1.4557e-01,False,No Significant Difference
+Slightly vs Severely,137,2.12,41,3.05,0.93,1641.5,2.7664e-05,1.6598e-04,True,Statistically Significant Difference
+Moderately vs Severely,107,2.5,41,3.05,0.54,1683.5,2.4210e-02,1.4526e-01,False,No Significant Difference

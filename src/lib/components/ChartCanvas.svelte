@@ -1,47 +1,45 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    ArcElement,
-    BarController,
-    DoughnutController,
-    LineController,
-    PieController
-  } from 'chart.js';
-
-  ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    ArcElement,
-    BarController,
-    DoughnutController,
-    LineController,
-    PieController
-  );
+  import { browser } from '$app/environment';
 
   let { type = 'bar', data, options = {}, height = 260 } = $props();
 
   let canvasEl;
   let chartInstance = null;
+  let ChartJS = null;
 
-  function renderChart() {
-    if (!canvasEl) return;
+  async function getChartJS() {
+    if (!browser) return null;
+    if (!ChartJS) {
+      const c = await import('chart.js');
+      ChartJS = c.Chart;
+      ChartJS.register(
+        c.Title,
+        c.Tooltip,
+        c.Legend,
+        c.BarElement,
+        c.CategoryScale,
+        c.LinearScale,
+        c.PointElement,
+        c.LineElement,
+        c.ArcElement,
+        c.BarController,
+        c.DoughnutController,
+        c.LineController,
+        c.PieController
+      );
+    }
+    return ChartJS;
+  }
+
+  async function renderChart() {
+    if (!browser || !canvasEl) return;
+    const Chart = await getChartJS();
+    if (!Chart || !canvasEl) return;
+
     if (chartInstance) {
       chartInstance.destroy();
+      chartInstance = null;
     }
     if (!data || !data.datasets || data.datasets.length === 0) {
       return;
@@ -87,7 +85,7 @@
       ...options
     };
 
-    chartInstance = new ChartJS(canvasEl, {
+    chartInstance = new Chart(canvasEl, {
       type,
       data,
       options: defaultOptions
@@ -99,7 +97,7 @@
   });
 
   $effect(() => {
-    if (data && canvasEl) {
+    if (browser && data && canvasEl) {
       renderChart();
     }
   });
@@ -107,6 +105,7 @@
   onDestroy(() => {
     if (chartInstance) {
       chartInstance.destroy();
+      chartInstance = null;
     }
   });
 </script>

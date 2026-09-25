@@ -310,53 +310,20 @@
       </Card>
     {/if}
 
-    <!-- 4. Recommendations & Official Helplines -->
-    <Card class="p-6 sm:p-8 space-y-4 printable-card bg-white border border-[#F0D5DD]">
-      <div class="border-b border-[#F0D5DD] pb-3">
-        <span class="text-[11px] font-bold uppercase tracking-wider text-[#BD5579]">
-          Supportive Guidance & Resources
-        </span>
-        <h2 class="card-heading text-base sm:text-lg text-[#601D49]">Cyber Safety & Student Wellness</h2>
+    <!-- Medical & Analytical Disclaimer -->
+    <div class="p-5 rounded-2xl bg-[#FFEBB8]/50 border border-[#EA9D9D] flex items-start gap-3 printable-card">
+      <svg class="w-5 h-5 text-[#BD5579] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+      </svg>
+      <div class="space-y-1 text-xs text-[#601D49] leading-relaxed font-medium">
+        <p>
+          <strong>Medical & Analytical Disclaimer:</strong> {disclaimer}
+        </p>
+        <p class="text-[#82476B]">
+          The classification reflects the model's prediction based on the submitted survey responses. This computational output is intended for academic research purposes and is not a clinical psychiatric evaluation. If you are experiencing distress, please reach out to qualified campus counseling or mental health professionals.
+        </p>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-        <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-1.5">
-          <h4 class="text-xs font-bold text-[#601D49]">Curate Digital Screen Time</h4>
-          <p class="text-xs text-[#82476B] leading-relaxed">
-            Establish healthy screen boundaries. Take structured breaks from social media feeds to mitigate continuous digital friction.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-1.5">
-          <h4 class="text-xs font-bold text-[#601D49]">Systematic Evidence Logging</h4>
-          <p class="text-xs text-[#82476B] leading-relaxed">
-            Preserve unedited screenshots with timestamps, account handles, and message URLs prior to muting or blocking offending profiles.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-1.5">
-          <h4 class="text-xs font-bold text-[#601D49]">National Helpline (1930)</h4>
-          <p class="text-xs text-[#82476B] leading-relaxed">
-            Report statutory cyber offenses via cybercrime.gov.in or dial the national helpline 1930 for official grievance redressal.
-          </p>
-        </div>
-      </div>
-
-      <!-- Prominent Medical / Analytical Disclaimer -->
-      <div class="p-4 rounded-xl bg-[#FFEBB8]/50 border border-[#EA9D9D] flex items-start gap-3 mt-3">
-        <svg class="w-5 h-5 text-[#BD5579] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-        </svg>
-        <div class="space-y-1 text-xs text-[#601D49] leading-relaxed font-medium">
-          <p>
-            <strong>Medical & Analytical Disclaimer:</strong> {disclaimer}
-          </p>
-          <p class="text-[#82476B]">
-            The classification reflects the model's prediction based on the submitted survey responses. This computational output is intended for academic research purposes and is not a clinical psychiatric evaluation. If you are experiencing distress, please reach out to qualified campus counseling or mental health professionals.
-          </p>
-        </div>
-      </div>
-    </Card>
+    </div>
 
   {/if}
 

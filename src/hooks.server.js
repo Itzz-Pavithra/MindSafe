@@ -23,5 +23,15 @@ export async function handle({ event, resolve }) {
     }
   }
 
+  // Protect Admin route
+  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
+    if (!user) {
+      throw redirect(303, '/login');
+    }
+    if (user.role !== 'admin') {
+      throw redirect(303, '/dashboard');
+    }
+  }
+
   return await resolve(event);
 }

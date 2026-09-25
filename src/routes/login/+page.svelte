@@ -27,8 +27,12 @@
         appState.setUser(data.user);
         appState.addToast('success', 'Sign In Successful', `Welcome, ${data.user.name}!`);
         
-        // Direct redirection to respondent workspace
-        window.location.href = '/dashboard';
+        // Direct redirection based on role
+        if (data.user?.role === 'admin') {
+          window.location.href = '/admin';
+        } else {
+          window.location.href = '/dashboard';
+        }
       } else {
         errorMessage = data.error || 'Invalid credentials. Please verify your email and password.';
       }

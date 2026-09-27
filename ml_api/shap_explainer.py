@@ -71,6 +71,84 @@ def clean_feature_label(raw_feature: str) -> str:
     cleaned = raw_feature.replace("_Ordinal", "").replace("_Binary", "").replace("_", " ")
     return cleaned
 
+def format_feature_and_response(raw_feat: str, feat_val: float, raw_answers: Optional[Dict[str, Any]] = None):
+    """
+    Translates an encoded feature name and numerical value into:
+    1. A clean, respondent-friendly feature label (e.g. 'Experienced Cyberbullying', 'Harassment Context', 'Action Taken').
+    2. The respondent's actual submitted answer/response string.
+    """
+    if raw_answers is None:
+        raw_answers = {}
+
+    if raw_feat == "Experienced_Cyberbullying_Binary":
+        ans = raw_answers.get("q5_exp")
+        return "Experienced Cyberbullying", str(ans) if ans else ("Yes" if feat_val == 1 else "No")
+
+    if raw_feat == "Witnessed_Cyberbullying_Binary":
+        ans = raw_answers.get("q6_wit")
+        return "Witnessed Cyberbullying", str(ans) if ans else ("Yes" if feat_val == 1 else "No")
+
+    if raw_feat == "Cyberbullying_Frequency_Ordinal":
+        m = {0: "Never", 1: "Rarely", 2: "Sometimes", 3: "Often", 4: "Very Often"}
+        ans = raw_answers.get("q11_freq") or raw_answers.get("frequency")
+        return "Cyberbullying Frequency", str(ans) if ans else m.get(int(feat_val), "Sometimes")
+
+    if raw_feat == "Age_Ordinal":
+        m = {0: "Below 18", 1: "18–22", 2: "23–30", 3: "Above 30"}
+        ans = raw_answers.get("age") or raw_answers.get("ageGroup")
+        return "Age Group", str(ans) if ans else m.get(int(feat_val), "18–22")
+
+    if raw_feat == "Daily_Usage_Ordinal":
+        m = {0: "Less than 1 hour", 1: "1–3 hours", 2: "3–5 hours", 3: "More than 5 hours"}
+        ans = raw_answers.get("usage") or raw_answers.get("usageHours")
+        return "Daily Social Media Usage", str(ans) if ans else m.get(int(feat_val), "1–3 hours")
+
+    if raw_feat.startswith("Gender_"):
+        cat = raw_feat.replace("Gender_", "")
+        if feat_val == 1:
+            return "Gender", cat
+        return f"Gender: {cat}", "No"
+
+    if raw_feat.startswith("Posted_Offensive_"):
+        cat = raw_feat.replace("Posted_Offensive_", "")
+        if feat_val == 1:
+            return "Posted Hurtful Content", cat
+        return f"Posted Hurtful Content: {cat}", "No"
+
+    if raw_feat.startswith("Incident_Platform_"):
+        cat = raw_feat.replace("Incident_Platform_", "")
+        if feat_val == 1:
+            return "Incident Platform", cat
+        return f"Incident Platform: {cat}", "No"
+
+    if raw_feat.startswith("Context_Area_"):
+        cat = raw_feat.replace("Context_Area_", "")
+        if feat_val == 1:
+            return "Harassment Context", cat
+        return f"Harassment Context: {cat}", "Not Encountered"
+
+    if raw_feat.startswith("Action_Taken_"):
+        cat = raw_feat.replace("Action_Taken_", "")
+        if feat_val == 1:
+            return "Action Taken", cat
+        return f"Action Taken: {cat}", "Not Taken"
+
+    if raw_feat.startswith("Bullying_Type_"):
+        cat = raw_feat.replace("Bullying_Type_", "")
+        return f"Observed: {cat}", "Yes" if feat_val == 1 else "No"
+
+    if raw_feat.startswith("Sought_Help_"):
+        cat = raw_feat.replace("Sought_Help_", "")
+        return f"Sought Help: {cat}", "Yes" if feat_val == 1 else "No"
+
+    if raw_feat.startswith("Platform_Used_"):
+        cat = raw_feat.replace("Platform_Used_", "")
+        return f"Active Platform: {cat}", "Yes" if feat_val == 1 else "No"
+
+    # Fallback for unexpected tokens
+    fallback_label = clean_feature_label(raw_feat)
+    return fallback_label, str(feat_val)
+
 class ShapExplainerManager:
     """
     Manager for TreeExplainer on the Random Forest Classifier.
@@ -96,7 +174,8 @@ class ShapExplainerManager:
         X_df,
         predicted_class_idx: int,
         predicted_class_name: str,
-        top_k: int = 5
+        top_k: int = 5,
+        raw_assessment: Optional[Dict[str, Any]] = None
     ) -> List[Dict[str, Any]]:
         """
         Calculates top contributing features for a single transformed observation.
@@ -106,6 +185,7 @@ class ShapExplainerManager:
             predicted_class_idx: Integer index of predicted class (0..3)
             predicted_class_name: String label of predicted class
             top_k: Number of highest-magnitude contributing features to return
+            raw_assessment: Optional mapping of raw survey responses for answer fidelity
         """
         if self.explainer is None:
             raise RuntimeError("SHAP TreeExplainer is not initialized.")
@@ -137,19 +217,37 @@ class ShapExplainerManager:
             raw_feature = feature_names[idx]
             val = float(class_shaps[idx])
             direction = "increased" if val > 0 else "decreased"
-            friendly_label = clean_feature_label(raw_feature)
+            supports = val > 0
 
-            # Strict non-causal explanation text
-            if direction == "increased":
+            # Extract transformed feature numerical value
+            try:
+                feat_val = float(X_df[raw_feature].values[0])
+            except Exception:
+                feat_val = float(X_df.iloc[0, idx])
+
+            friendly_label, user_response = format_feature_and_response(
+                raw_feature, feat_val, raw_assessment
+            )
+
+            # Respondent-friendly findings and labels
+            if supports:
+                finding = f"Your response contributed toward the predicted '{predicted_class_name}' category."
+                direction_label = f"Supports \"{predicted_class_name}\""
                 desc = f"The model placed positive analytical weight on {friendly_label} toward predicting '{predicted_class_name}'."
             else:
+                finding = f"Your response pulled the prediction away from the '{predicted_class_name}' category."
+                direction_label = f"Opposes \"{predicted_class_name}\""
                 desc = f"The model placed countervailing weight on {friendly_label} relative to predicting '{predicted_class_name}'."
 
             top_contributions.append({
                 "feature": friendly_label,
                 "raw_feature": raw_feature,
+                "user_response": user_response,
                 "shap_value": round(val, 4),
                 "direction": direction,
+                "supports": supports,
+                "direction_label": direction_label,
+                "finding": finding,
                 "description": desc
             })
 

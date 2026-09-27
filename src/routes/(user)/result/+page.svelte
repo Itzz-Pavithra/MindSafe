@@ -61,6 +61,73 @@
         return 'bg-[#FFEBB8] border-[#BD5579] text-[#601D49] font-bold';
     }
   }
+
+  function getFeatureName(item) {
+    if (item.feature) {
+      if (item.feature.startsWith('Action Taken: ')) return 'Action Taken';
+      if (item.feature.startsWith('Harassment Context (')) return 'Harassment Context';
+      if (item.feature.startsWith('Gender (')) return 'Gender';
+      if (item.feature.startsWith('Incident Platform (')) return 'Incident Platform';
+      if (item.feature.startsWith('Posted Hurtful Content (')) return 'Posted Hurtful Content';
+      return item.feature;
+    }
+    return item.raw_feature || 'Feature';
+  }
+
+  function getUserResponse(item) {
+    if (item.user_response !== undefined && item.user_response !== null && item.user_response !== '') {
+      return item.user_response;
+    }
+    const raw = item.raw_feature || '';
+    if (raw === 'Experienced_Cyberbullying_Binary' || raw === 'Witnessed_Cyberbullying_Binary') {
+      return item.direction === 'increased' ? 'Yes' : 'No';
+    }
+    if (raw.startsWith('Bullying_Type_') || raw.startsWith('Platform_Used_') || raw.startsWith('Sought_Help_')) {
+      return item.direction === 'increased' ? 'Yes' : 'No';
+    }
+    if (raw.startsWith('Action_Taken_')) {
+      return raw.replace('Action_Taken_', '');
+    }
+    if (raw.startsWith('Context_Area_')) {
+      return raw.replace('Context_Area_', '');
+    }
+    if (raw.startsWith('Gender_')) {
+      return raw.replace('Gender_', '');
+    }
+    if (raw.startsWith('Incident_Platform_')) {
+      return raw.replace('Incident_Platform_', '');
+    }
+    if (raw.startsWith('Posted_Offensive_')) {
+      return raw.replace('Posted_Offensive_', '');
+    }
+    const parenMatch = item.feature?.match(/\((.*?)\)/);
+    if (parenMatch) return parenMatch[1];
+    return 'Recorded';
+  }
+
+  function getModelFinding(item, currentClass) {
+    const target = currentClass || 'target';
+    if (item.finding) {
+      return item.finding;
+    }
+    if (item.shap_value > 0 || item.direction === 'increased') {
+      return `Your response contributed toward the predicted "${target}" category.`;
+    } else {
+      return `Your response pulled the prediction away from the "${target}" category.`;
+    }
+  }
+
+  function getDirectionLabel(item, currentClass) {
+    const target = currentClass || 'target';
+    if (item.direction_label) {
+      return item.direction_label;
+    }
+    if (item.shap_value > 0 || item.direction === 'increased') {
+      return `Supports "${target}"`;
+    } else {
+      return `Opposes "${target}"`;
+    }
+  }
 </script>
 
 <svelte:head>
@@ -206,53 +273,80 @@
       {/if}
     </Card>
 
-    <!-- 2. "Why did the model make this prediction?" Section (Actual SHAP Output) -->
-    <Card class="p-6 sm:p-8 space-y-5 printable-card bg-white border border-[#F0D5DD]">
+    <!-- 2. "Why did the model make this prediction?" Section (Respondent-Friendly SHAP Explanation) -->
+    <Card class="p-6 sm:p-8 space-y-6 printable-card bg-white border border-[#F0D5DD]">
       <div class="border-b border-[#F0D5DD] pb-3 space-y-0.5">
         <span class="text-[11px] font-bold uppercase tracking-wider text-[#BD5579]">
           Local Model Explainability (SHAP TreeExplainer)
         </span>
-        <h2 class="card-heading text-lg text-[#601D49]">Why did the model make this prediction?</h2>
+        <h2 class="card-heading text-lg sm:text-xl text-[#601D49]">Why did the model make this prediction?</h2>
         <p class="text-xs text-[#82476B]">
           The features below contributed most heavily to the algorithm's decision for your specific response profile.
         </p>
       </div>
 
       {#if topFeatures && topFeatures.length > 0}
-        <div class="space-y-3">
+        <div class="space-y-4">
           {#each topFeatures as item, idx}
-            <div class="p-4 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] flex items-start justify-between gap-3">
-              <div class="flex items-start gap-3 min-w-0">
-                <span class="w-6 h-6 rounded-full bg-[#FFEBB8] text-[#601D49] font-bold text-xs flex items-center justify-center shrink-0 border border-[#EA9D9D]/60 mt-0.5">
-                  {idx + 1}
-                </span>
-                <div class="space-y-0.5 min-w-0">
-                  <h4 class="text-xs sm:text-sm font-bold text-[#601D49]">
-                    {item.feature}
-                  </h4>
-                  <p class="text-xs text-[#82476B] leading-relaxed">
-                    {item.description}
-                  </p>
+            {@const isPositive = item.shap_value > 0 || item.direction === 'increased'}
+            {@const featureName = getFeatureName(item)}
+            {@const userResponse = getUserResponse(item)}
+            <div class="p-4 sm:p-5 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] space-y-3">
+              <!-- Top Row: Index, Feature Name, Direction Label & SHAP Contribution -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <span class="w-6 h-6 rounded-full bg-[#FFEBB8] text-[#601D49] font-bold text-xs flex items-center justify-center shrink-0 border border-[#EA9D9D]/60">
+                    {idx + 1}
+                  </span>
+                  <h3 class="text-sm sm:text-base font-bold text-[#601D49] truncate">
+                    {featureName}
+                  </h3>
+                </div>
+
+                <div class="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+                  <!-- Direction Label -->
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-bold
+                    {isPositive 
+                      ? 'bg-[#EBF7EE] text-[#22543D] border border-[#48BB78]/40' 
+                      : 'bg-[#FFF5F5] text-[#742A2A] border border-[#E53E3E]/40'}">
+                    {getDirectionLabel(item, classification)}
+                  </span>
+                  {#if !isPositive}
+                    <span class="text-[10px] text-[#82476B] font-medium" title="Countervailing factor">
+                      (Countervailing)
+                    </span>
+                  {/if}
+                  <!-- Contribution Value -->
+                  <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-white border border-[#F0D5DD] {isPositive ? 'text-[#22543D]' : 'text-[#742A2A]'}">
+                    {item.shap_value > 0 ? '+' : ''}{Number(item.shap_value).toFixed(4)}
+                  </span>
                 </div>
               </div>
 
-              <div class="shrink-0 text-right space-y-0.5">
-                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold
-                  {item.direction === 'increased' 
-                    ? 'bg-[#EBF7EE] text-[#22543D] border border-[#48BB78]/40' 
-                    : 'bg-[#FFF5F5] text-[#742A2A] border border-[#E53E3E]/40'}">
-                  {item.direction === 'increased' ? '+ Positive Weight' : 'Countervailing'}
+              <!-- Respondent's Actual Answer -->
+              <div class="bg-white rounded-lg p-2.5 px-3 border border-[#F0D5DD] flex items-center justify-between gap-3 text-xs">
+                <span class="font-semibold text-[#82476B]">Your response:</span>
+                <span class="font-bold text-[#601D49] bg-[#FFEBB8]/50 px-2.5 py-0.5 rounded border border-[#EA9D9D]/40">
+                  {userResponse}
                 </span>
-                <span class="block text-[10px] text-[#82476B] font-mono">
-                  SHAP: {item.shap_value > 0 ? '+' : ''}{item.shap_value}
+              </div>
+
+              <!-- What the Model Found -->
+              <div class="space-y-0.5 text-xs">
+                <span class="font-semibold text-[#82476B] uppercase tracking-wider text-[10px] block">
+                  What the model found:
                 </span>
+                <p class="text-xs sm:text-sm text-[#601D49] leading-relaxed">
+                  {getModelFinding(item, classification)}
+                </p>
               </div>
             </div>
           {/each}
         </div>
 
-        <div class="p-3 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] text-[11px] text-[#82476B] leading-relaxed">
-          <strong>Methodological note:</strong> SHAP (SHapley Additive exPlanations) values quantify how much each survey response pushed the tree ensemble toward or away from the predicted class. They explain model decision behavior, not medical causality.
+        <!-- Respondent-Friendly Disclaimer -->
+        <div class="p-3.5 rounded-xl bg-[#FAF7F8] border border-[#F0D5DD] text-xs text-[#82476B] leading-relaxed">
+          These explanations show how your survey responses influenced the model's prediction. They do not explain the personal reason behind your answers and do not represent a medical diagnosis.
         </div>
 
       {:else}

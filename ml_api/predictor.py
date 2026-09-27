@@ -163,7 +163,8 @@ class Predictor:
                 X_transformed,
                 predicted_class_idx=pred_class_idx,
                 predicted_class_name=pred_class_name,
-                top_k=5
+                top_k=5,
+                raw_assessment=assessment
             )
         except Exception as e:
             logger.error(f"SHAP explanation generation error: {e}")

@@ -32,6 +32,10 @@ class FeatureContribution(BaseModel):
     shap_value: float = Field(..., description="SHAP attribution value for the predicted class")
     direction: str = Field(..., description="'increased' or 'decreased' relative to class probability")
     description: str = Field(..., description="Carefully worded explanation adhering to non-causal standard")
+    user_response: Optional[str] = Field(None, description="Respondent's original response or feature value")
+    supports: Optional[bool] = Field(None, description="Whether this feature supported the predicted class")
+    direction_label: Optional[str] = Field(None, description="Respondent-facing direction label e.g. Supports or Opposes")
+    finding: Optional[str] = Field(None, description="Respondent-friendly model finding")
 
 class PredictionDetail(BaseModel):
     predicted_class: str = Field(..., alias="class", description="Predicted mental health impact class")

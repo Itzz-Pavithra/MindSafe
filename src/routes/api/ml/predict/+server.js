@@ -47,13 +47,60 @@ export async function POST({ request, locals }) {
       submittedAt: new Date()
     });
 
+    // Ensure every top feature has user_response populated from the survey answers
+    const enrichedTopFeatures = (mlResult.explanation.top_features || []).map(f => {
+      let userResponse = f.user_response;
+      if (!userResponse || userResponse === 'Recorded') {
+        const raw = f.raw_feature || '';
+        if (raw === 'Cyberbullying_Frequency_Ordinal') {
+          userResponse = assessment.q11_freq || assessment.frequency || (f.direction === 'increased' ? 'Sometimes' : 'Never');
+        } else if (raw === 'Age_Ordinal') {
+          userResponse = assessment.age || assessment.ageGroup || '18–22';
+        } else if (raw === 'Daily_Usage_Ordinal') {
+          userResponse = assessment.usage || assessment.usageHours || '1–3 hours';
+        } else if (raw === 'Experienced_Cyberbullying_Binary') {
+          userResponse = assessment.q5_exp || (f.direction === 'increased' ? 'Yes' : 'No');
+        } else if (raw === 'Witnessed_Cyberbullying_Binary') {
+          userResponse = assessment.q6_wit || (f.direction === 'increased' ? 'Yes' : 'No');
+        } else if (raw.startsWith('Gender_')) {
+          const cat = raw.replace('Gender_', '');
+          userResponse = assessment.gender === cat ? cat : 'No';
+        } else if (raw.startsWith('Posted_Offensive_')) {
+          const cat = raw.replace('Posted_Offensive_', '');
+          userResponse = assessment.q7_post === cat ? cat : 'No';
+        } else if (raw.startsWith('Incident_Platform_')) {
+          const cat = raw.replace('Incident_Platform_', '');
+          userResponse = assessment.q10_plat === cat ? cat : 'No';
+        } else if (raw.startsWith('Context_Area_')) {
+          const cat = raw.replace('Context_Area_', '');
+          userResponse = assessment.q17_area === cat ? cat : 'Not Encountered';
+        } else if (raw.startsWith('Action_Taken_')) {
+          const cat = raw.replace('Action_Taken_', '');
+          userResponse = Array.isArray(assessment.q18_act) ? (assessment.q18_act.includes(cat) ? cat : 'Not Taken') : (f.direction === 'increased' ? cat : 'Not Taken');
+        } else if (raw.startsWith('Bullying_Type_')) {
+          const cat = raw.replace('Bullying_Type_', '');
+          userResponse = Array.isArray(assessment.q9_types) ? (assessment.q9_types.includes(cat) ? 'Yes' : 'No') : (f.direction === 'increased' ? 'Yes' : 'No');
+        } else if (raw.startsWith('Sought_Help_')) {
+          const cat = raw.replace('Sought_Help_', '');
+          userResponse = Array.isArray(assessment.q15_help) ? (assessment.q15_help.includes(cat) ? 'Yes' : 'No') : (f.direction === 'increased' ? 'Yes' : 'No');
+        } else if (raw.startsWith('Platform_Used_')) {
+          const cat = raw.replace('Platform_Used_', '');
+          userResponse = Array.isArray(assessment.platforms) ? (assessment.platforms.includes(cat) ? 'Yes' : 'No') : (f.direction === 'increased' ? 'Yes' : 'No');
+        }
+      }
+      return {
+        ...f,
+        user_response: userResponse || 'Recorded'
+      };
+    });
+
     // Store ML prediction result and SHAP feature contributions
     await AssessmentResult.create({
       userId: locals.user.id,
       responseId: surveyDoc._id,
       classification: mlResult.prediction.class,
       probabilities: mlResult.prediction.probabilities,
-      topFeatures: mlResult.explanation.top_features || [],
+      topFeatures: enrichedTopFeatures,
       modelVersion: mlResult.model_version || 'MindSafe Primary Random Forest (Scenario B)',
       disclaimer: mlResult.disclaimer || 'This is an analytical result from the project ML model and is not a medical diagnosis.',
       createdAt: new Date()
@@ -67,7 +114,7 @@ export async function POST({ request, locals }) {
         probabilities: mlResult.prediction.probabilities
       },
       explanation: {
-        top_features: mlResult.explanation.top_features || []
+        top_features: enrichedTopFeatures
       },
       disclaimer: mlResult.disclaimer || 'This is an analytical result from the project ML model and is not a medical diagnosis.'
     });

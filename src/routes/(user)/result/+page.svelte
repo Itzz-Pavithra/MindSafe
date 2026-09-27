@@ -14,6 +14,7 @@
   let modelVersion = $state('MindSafe Primary Random Forest (Scenario B)');
   let disclaimer = $state('This is an analytical result from the project ML model and is not a medical diagnosis.');
   let showDetailedProbabilities = $state(false);
+  let userResponses = $state({});
 
   const targetClasses = ['Not at all', 'Slightly', 'Moderately', 'Severely'];
 
@@ -29,6 +30,7 @@
           classification = data.result.classification;
           probabilities = data.result.probabilities || null;
           topFeatures = data.result.topFeatures || [];
+          userResponses = data.result.responses || {};
           modelVersion = data.result.modelVersion || modelVersion;
           if (data.result.disclaimer) disclaimer = data.result.disclaimer;
         }
@@ -75,34 +77,68 @@
   }
 
   function getUserResponse(item) {
-    if (item.user_response !== undefined && item.user_response !== null && item.user_response !== '') {
+    if (item.user_response !== undefined && item.user_response !== null && item.user_response !== '' && item.user_response !== 'Recorded') {
       return item.user_response;
     }
     const raw = item.raw_feature || '';
-    if (raw === 'Experienced_Cyberbullying_Binary' || raw === 'Witnessed_Cyberbullying_Binary') {
-      return item.direction === 'increased' ? 'Yes' : 'No';
+    if (raw === 'Cyberbullying_Frequency_Ordinal') {
+      return userResponses.q11_freq || userResponses.frequency || (item.direction === 'increased' ? 'Sometimes' : 'Never');
     }
-    if (raw.startsWith('Bullying_Type_') || raw.startsWith('Platform_Used_') || raw.startsWith('Sought_Help_')) {
-      return item.direction === 'increased' ? 'Yes' : 'No';
+    if (raw === 'Age_Ordinal') {
+      return userResponses.age || userResponses.ageGroup || '18–22';
     }
-    if (raw.startsWith('Action_Taken_')) {
-      return raw.replace('Action_Taken_', '');
+    if (raw === 'Daily_Usage_Ordinal') {
+      return userResponses.usage || userResponses.usageHours || '1–3 hours';
     }
-    if (raw.startsWith('Context_Area_')) {
-      return raw.replace('Context_Area_', '');
+    if (raw === 'Experienced_Cyberbullying_Binary') {
+      return userResponses.q5_exp || (item.direction === 'increased' ? 'Yes' : 'No');
+    }
+    if (raw === 'Witnessed_Cyberbullying_Binary') {
+      return userResponses.q6_wit || (item.direction === 'increased' ? 'Yes' : 'No');
     }
     if (raw.startsWith('Gender_')) {
-      return raw.replace('Gender_', '');
-    }
-    if (raw.startsWith('Incident_Platform_')) {
-      return raw.replace('Incident_Platform_', '');
+      const cat = raw.replace('Gender_', '');
+      if (userResponses.gender) return userResponses.gender === cat ? cat : 'No';
+      return item.direction === 'increased' ? cat : 'No';
     }
     if (raw.startsWith('Posted_Offensive_')) {
-      return raw.replace('Posted_Offensive_', '');
+      const cat = raw.replace('Posted_Offensive_', '');
+      if (userResponses.q7_post) return userResponses.q7_post === cat ? cat : 'No';
+      return item.direction === 'increased' ? cat : 'No';
+    }
+    if (raw.startsWith('Incident_Platform_')) {
+      const cat = raw.replace('Incident_Platform_', '');
+      if (userResponses.q10_plat) return userResponses.q10_plat === cat ? cat : 'No';
+      return item.direction === 'increased' ? cat : 'No';
+    }
+    if (raw.startsWith('Context_Area_')) {
+      const cat = raw.replace('Context_Area_', '');
+      if (userResponses.q17_area) return userResponses.q17_area === cat ? cat : 'Not Encountered';
+      return item.direction === 'increased' ? cat : 'Not Encountered';
+    }
+    if (raw.startsWith('Action_Taken_')) {
+      const cat = raw.replace('Action_Taken_', '');
+      if (Array.isArray(userResponses.q18_act)) return userResponses.q18_act.includes(cat) ? cat : 'Not Taken';
+      return item.direction === 'increased' ? cat : 'Not Taken';
+    }
+    if (raw.startsWith('Bullying_Type_')) {
+      const cat = raw.replace('Bullying_Type_', '');
+      if (Array.isArray(userResponses.q9_types)) return userResponses.q9_types.includes(cat) ? 'Yes' : 'No';
+      return item.direction === 'increased' ? 'Yes' : 'No';
+    }
+    if (raw.startsWith('Sought_Help_')) {
+      const cat = raw.replace('Sought_Help_', '');
+      if (Array.isArray(userResponses.q15_help)) return userResponses.q15_help.includes(cat) ? 'Yes' : 'No';
+      return item.direction === 'increased' ? 'Yes' : 'No';
+    }
+    if (raw.startsWith('Platform_Used_')) {
+      const cat = raw.replace('Platform_Used_', '');
+      if (Array.isArray(userResponses.platforms)) return userResponses.platforms.includes(cat) ? 'Yes' : 'No';
+      return item.direction === 'increased' ? 'Yes' : 'No';
     }
     const parenMatch = item.feature?.match(/\((.*?)\)/);
     if (parenMatch) return parenMatch[1];
-    return 'Recorded';
+    return item.direction === 'increased' ? 'Yes' : 'No';
   }
 
   function getModelFinding(item, currentClass) {

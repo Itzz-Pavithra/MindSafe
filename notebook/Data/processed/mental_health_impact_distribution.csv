@@ -1,0 +1,6 @@
+Category,Ordinal_Score,Frequency,Valid_Percentage,Total_Percentage
+Not at all,0.0,229,44.55,44.12
+Slightly,1.0,137,26.65,26.4
+Moderately,2.0,107,20.82,20.62
+Severely,3.0,41,7.98,7.9
+Missing (NaN),,5,,0.96

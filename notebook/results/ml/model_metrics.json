@@ -1,0 +1,18 @@
+{
+  "Accuracy": 0.6832,
+  "Macro_Precision": 0.6974,
+  "Macro_Recall": 0.6826,
+  "Macro_F1": 0.6884,
+  "Weighted_Precision": 0.6859,
+  "Weighted_Recall": 0.6832,
+  "Weighted_F1": 0.6829,
+  "Cross_Validation": {
+    "n_splits": 5,
+    "accuracy_mean": 0.6664,
+    "accuracy_std": 0.0395,
+    "macro_f1_mean": 0.6654,
+    "macro_f1_std": 0.0418,
+    "weighted_f1_mean": 0.6632,
+    "weighted_f1_std": 0.0406
+  }
+}

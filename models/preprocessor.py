@@ -15,8 +15,8 @@ class SurveyFeaturePreprocessor:
         self.feature_names_ = []
         
         # Ordinal mapping dictionaries
-        self.age_map = {'Below 18': 0, '18–22': 1, '23–30': 2, 'Above 30': 3, '31–40': 3, '41–50': 4}
-        self.usage_map = {'Less than 1 hour': 0, '1–3 hours': 1, '3–5 hours': 2, 'More than 5 hours': 3}
+        self.age_map = {'Below 18': 0, '18–22': 1, '18-22': 1, '23–30': 2, '23-30': 2, 'Above 30': 3, '31–40': 3, '31-40': 3, '41–50': 4, '41-50': 4}
+        self.usage_map = {'Less than 1 hour': 0, '1–3 hours': 1, '1-3 hours': 1, '3–5 hours': 2, '3-5 hours': 2, 'More than 5 hours': 3}
         self.freq_map = {'Never': 0, 'Rarely': 1, 'Sometimes': 2, 'Often': 3, 'Very Often': 4}
         self.sev_map = {'1 (Very Low)': 1, '2': 2, '3': 3, '4': 4, '5 (Very High)': 5}
         
@@ -64,7 +64,7 @@ class SurveyFeaturePreprocessor:
         nominal_keys = ['gender', 'q7_post', 'q10_plat', 'q17_area']
         for k in nominal_keys:
             col_str = self.col_names[k]
-            cats = sorted([str(x) for x in X_df[col_str].dropna().unique() if str(x) != 'nan'])
+            cats = sorted([str(x).strip() for x in X_df[col_str].dropna().unique() if str(x).strip() not in {'', 'nan', 'None'}])
             self.nominal_categories[k] = cats
             
         # Construct feature names list

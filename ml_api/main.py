@@ -100,9 +100,9 @@ async def health_check():
 
     metadata = model_loader.metadata
     test_metrics = metadata.get("test_metrics", {
-        "Accuracy": 0.4854,
-        "Macro_F1": 0.3275,
-        "Weighted_F1": 0.4177
+        "Accuracy": 0.6540,
+        "Macro_F1": 0.6473,
+        "Weighted_F1": 0.6414
     })
     feature_count = len(getattr(model_loader.preprocessor, "feature_names_", []))
 

@@ -1,0 +1,304 @@
+True_Class,Predicted_Class,Correct,Prob_Not at all,Prob_Slightly,Prob_Moderately,Prob_Severely
+Not at all,Not at all,True,0.5,0.29,0.12,0.09
+Severely,Severely,True,0.0,0.0,0.16,0.84
+Severely,Severely,True,0.02,0.0,0.1,0.88
+Slightly,Not at all,False,0.75,0.16,0.08,0.01
+Slightly,Not at all,False,0.64,0.25,0.11,0.0
+Moderately,Moderately,True,0.22,0.08,0.54,0.16
+Slightly,Not at all,False,0.43,0.43,0.14,0.0
+Slightly,Slightly,True,0.13,0.46,0.26,0.15
+Slightly,Slightly,True,0.21,0.53,0.23,0.03
+Severely,Severely,True,0.01,0.03,0.18,0.78
+Not at all,Not at all,True,0.47,0.39,0.11,0.03
+Not at all,Not at all,True,0.72,0.21,0.04,0.03
+Slightly,Slightly,True,0.29,0.52,0.13,0.06
+Severely,Severely,True,0.03,0.01,0.13,0.83
+Severely,Severely,True,0.03,0.01,0.13,0.83
+Severely,Severely,True,0.02,0.04,0.22,0.72
+Slightly,Not at all,False,0.73,0.22,0.05,0.0
+Not at all,Not at all,True,0.83,0.17,0.0,0.0
+Moderately,Moderately,True,0.05,0.07,0.63,0.25
+Slightly,Slightly,True,0.15,0.69,0.14,0.02
+Slightly,Moderately,False,0.04,0.44,0.52,0.0
+Moderately,Severely,False,0.08,0.18,0.36,0.38
+Severely,Moderately,False,0.04,0.14,0.61,0.21
+Moderately,Slightly,False,0.04,0.52,0.41,0.03
+Not at all,Slightly,False,0.4,0.57,0.03,0.0
+Not at all,Not at all,True,0.73,0.17,0.07,0.03
+Moderately,Moderately,True,0.08,0.27,0.54,0.11
+Not at all,Not at all,True,0.83,0.1,0.07,0.0
+Slightly,Slightly,True,0.05,0.68,0.06,0.21
+Not at all,Not at all,True,0.93,0.06,0.01,0.0
+Severely,Severely,True,0.06,0.02,0.25,0.67
+Slightly,Slightly,True,0.4,0.44,0.05,0.11
+Slightly,Moderately,False,0.2,0.31,0.39,0.1
+Not at all,Not at all,True,0.92,0.05,0.03,0.0
+Not at all,Slightly,False,0.35,0.43,0.21,0.01
+Moderately,Moderately,True,0.16,0.3,0.45,0.09
+Not at all,Not at all,True,0.67,0.21,0.12,0.0
+Slightly,Slightly,True,0.24,0.47,0.17,0.12
+Not at all,Not at all,True,0.7,0.2,0.09,0.01
+Not at all,Not at all,True,0.73,0.26,0.01,0.0
+Not at all,Not at all,True,0.68,0.13,0.16,0.03
+Severely,Moderately,False,0.15,0.16,0.53,0.16
+Moderately,Moderately,True,0.01,0.07,0.47,0.45
+Slightly,Slightly,True,0.26,0.67,0.03,0.04
+Slightly,Slightly,True,0.23,0.49,0.19,0.09
+Not at all,Not at all,True,0.75,0.19,0.06,0.0
+Not at all,Not at all,True,0.87,0.13,0.0,0.0
+Moderately,Moderately,True,0.01,0.1,0.53,0.36
+Slightly,Not at all,False,0.71,0.28,0.01,0.0
+Severely,Severely,True,0.03,0.02,0.1,0.85
+Slightly,Not at all,False,0.61,0.23,0.15,0.01
+Severely,Severely,True,0.01,0.02,0.19,0.78
+Moderately,Moderately,True,0.19,0.24,0.35,0.22
+Severely,Severely,True,0.02,0.04,0.12,0.82
+Not at all,Not at all,True,0.71,0.15,0.14,0.0
+Moderately,Slightly,False,0.15,0.36,0.35,0.14
+Not at all,Not at all,True,0.94,0.06,0.0,0.0
+Slightly,Not at all,False,0.52,0.46,0.02,0.0
+Not at all,Not at all,True,0.71,0.18,0.07,0.04
+Severely,Moderately,False,0.04,0.06,0.47,0.43
+Severely,Moderately,False,0.31,0.26,0.35,0.08
+Not at all,Not at all,True,0.57,0.35,0.07,0.01
+Moderately,Slightly,False,0.09,0.63,0.26,0.02
+Slightly,Not at all,False,0.67,0.27,0.06,0.0
+Slightly,Slightly,True,0.24,0.51,0.16,0.09
+Moderately,Slightly,False,0.25,0.36,0.32,0.07
+Not at all,Not at all,True,0.94,0.06,0.0,0.0
+Not at all,Not at all,True,0.69,0.3,0.01,0.0
+Moderately,Moderately,True,0.13,0.19,0.47,0.21
+Moderately,Slightly,False,0.31,0.36,0.25,0.08
+Moderately,Moderately,True,0.1,0.27,0.4,0.23
+Not at all,Not at all,True,0.82,0.15,0.03,0.0
+Slightly,Slightly,True,0.28,0.4,0.27,0.05
+Not at all,Not at all,True,0.76,0.21,0.01,0.02
+Slightly,Slightly,True,0.16,0.52,0.25,0.07
+Slightly,Not at all,False,0.5,0.41,0.08,0.01
+Not at all,Not at all,True,0.42,0.26,0.19,0.13
+Severely,Slightly,False,0.08,0.46,0.23,0.23
+Slightly,Slightly,True,0.24,0.59,0.12,0.05
+Moderately,Moderately,True,0.2,0.11,0.46,0.23
+Severely,Severely,True,0.09,0.09,0.21,0.61
+Moderately,Moderately,True,0.03,0.45,0.5,0.02
+Not at all,Not at all,True,0.49,0.44,0.06,0.01
+Not at all,Not at all,True,0.6,0.3,0.09,0.01
+Not at all,Not at all,True,0.96,0.03,0.01,0.0
+Severely,Severely,True,0.06,0.09,0.31,0.54
+Moderately,Slightly,False,0.23,0.34,0.25,0.18
+Slightly,Moderately,False,0.02,0.23,0.51,0.24
+Not at all,Slightly,False,0.46,0.51,0.03,0.0
+Not at all,Not at all,True,0.62,0.29,0.09,0.0
+Slightly,Slightly,True,0.14,0.54,0.21,0.11
+Slightly,Slightly,True,0.1,0.62,0.22,0.06
+Severely,Severely,True,0.05,0.07,0.29,0.59
+Severely,Severely,True,0.09,0.18,0.3,0.43
+Not at all,Not at all,True,0.42,0.37,0.2,0.01
+Moderately,Moderately,True,0.03,0.44,0.46,0.07
+Not at all,Not at all,True,0.52,0.34,0.1,0.04
+Not at all,Not at all,True,0.91,0.05,0.03,0.01
+Slightly,Slightly,True,0.23,0.56,0.18,0.03
+Moderately,Not at all,False,0.67,0.27,0.05,0.01
+Slightly,Slightly,True,0.4,0.54,0.04,0.02
+Slightly,Slightly,True,0.22,0.43,0.32,0.03
+Not at all,Not at all,True,0.92,0.07,0.01,0.0
+Moderately,Moderately,True,0.07,0.39,0.46,0.08
+Moderately,Moderately,True,0.17,0.28,0.46,0.09
+Slightly,Not at all,False,0.84,0.14,0.02,0.0
+Not at all,Not at all,True,0.57,0.34,0.08,0.01
+Severely,Severely,True,0.01,0.05,0.04,0.9
+Not at all,Moderately,False,0.08,0.03,0.73,0.16
+Moderately,Slightly,False,0.2,0.44,0.34,0.02
+Slightly,Slightly,True,0.14,0.69,0.13,0.04
+Not at all,Slightly,False,0.19,0.5,0.27,0.04
+Not at all,Slightly,False,0.11,0.56,0.31,0.02
+Severely,Severely,True,0.03,0.04,0.16,0.77
+Moderately,Slightly,False,0.2,0.43,0.27,0.1
+Slightly,Slightly,True,0.11,0.45,0.44,0.0
+Severely,Severely,True,0.0,0.02,0.15,0.83
+Severely,Severely,True,0.03,0.11,0.27,0.59
+Not at all,Moderately,False,0.31,0.16,0.36,0.17
+Slightly,Slightly,True,0.23,0.51,0.21,0.05
+Moderately,Slightly,False,0.06,0.49,0.42,0.03
+Slightly,Slightly,True,0.21,0.57,0.2,0.02
+Slightly,Slightly,True,0.37,0.52,0.08,0.03
+Not at all,Slightly,False,0.41,0.44,0.11,0.04
+Not at all,Not at all,True,0.83,0.11,0.06,0.0
+Not at all,Not at all,True,0.56,0.4,0.04,0.0
+Not at all,Not at all,True,0.69,0.3,0.01,0.0
+Not at all,Moderately,False,0.22,0.27,0.46,0.05
+Not at all,Not at all,True,0.9,0.04,0.06,0.0
+Severely,Moderately,False,0.16,0.11,0.41,0.32
+Not at all,Not at all,True,0.89,0.07,0.04,0.0
+Not at all,Not at all,True,0.95,0.05,0.0,0.0
+Moderately,Moderately,True,0.2,0.39,0.41,0.0
+Not at all,Not at all,True,0.62,0.3,0.08,0.0
+Not at all,Not at all,True,0.67,0.32,0.01,0.0
+Severely,Severely,True,0.04,0.03,0.1,0.83
+Slightly,Slightly,True,0.24,0.49,0.24,0.03
+Severely,Slightly,False,0.21,0.33,0.29,0.17
+Not at all,Not at all,True,0.54,0.4,0.06,0.0
+Not at all,Not at all,True,0.57,0.42,0.01,0.0
+Not at all,Not at all,True,0.73,0.24,0.03,0.0
+Slightly,Slightly,True,0.2,0.63,0.14,0.03
+Severely,Severely,True,0.07,0.08,0.26,0.59
+Moderately,Moderately,True,0.13,0.09,0.56,0.22
+Severely,Severely,True,0.03,0.04,0.18,0.75
+Severely,Severely,True,0.02,0.02,0.09,0.87
+Not at all,Not at all,True,0.44,0.29,0.14,0.13
+Moderately,Moderately,True,0.12,0.13,0.4,0.35
+Severely,Severely,True,0.0,0.02,0.13,0.85
+Moderately,Not at all,False,0.42,0.14,0.32,0.12
+Not at all,Not at all,True,0.97,0.03,0.0,0.0
+Not at all,Slightly,False,0.29,0.43,0.25,0.03
+Slightly,Slightly,True,0.06,0.64,0.23,0.07
+Not at all,Not at all,True,0.96,0.04,0.0,0.0
+Moderately,Moderately,True,0.13,0.02,0.69,0.16
+Moderately,Moderately,True,0.04,0.42,0.53,0.01
+Slightly,Not at all,False,0.76,0.22,0.02,0.0
+Slightly,Slightly,True,0.24,0.62,0.13,0.01
+Not at all,Not at all,True,0.8,0.19,0.01,0.0
+Moderately,Slightly,False,0.11,0.43,0.38,0.08
+Moderately,Moderately,True,0.19,0.02,0.56,0.23
+Not at all,Not at all,True,0.68,0.28,0.04,0.0
+Moderately,Not at all,False,0.44,0.44,0.12,0.0
+Slightly,Not at all,False,0.74,0.24,0.0,0.02
+Not at all,Not at all,True,0.88,0.11,0.01,0.0
+Moderately,Moderately,True,0.2,0.09,0.48,0.23
+Not at all,Slightly,False,0.27,0.33,0.19,0.21
+Slightly,Slightly,True,0.06,0.76,0.14,0.04
+Slightly,Slightly,True,0.28,0.43,0.2,0.09
+Not at all,Slightly,False,0.29,0.43,0.23,0.05
+Not at all,Not at all,True,0.97,0.03,0.0,0.0
+Slightly,Not at all,False,0.67,0.28,0.04,0.01
+Not at all,Not at all,True,0.66,0.28,0.05,0.01
+Not at all,Slightly,False,0.26,0.63,0.11,0.0
+Moderately,Slightly,False,0.12,0.44,0.36,0.08
+Severely,Severely,True,0.0,0.04,0.15,0.81
+Slightly,Moderately,False,0.17,0.27,0.49,0.07
+Severely,Severely,True,0.13,0.06,0.33,0.48
+Slightly,Moderately,False,0.05,0.37,0.54,0.04
+Moderately,Moderately,True,0.03,0.09,0.67,0.21
+Moderately,Not at all,False,0.53,0.13,0.3,0.04
+Not at all,Slightly,False,0.21,0.48,0.24,0.07
+Moderately,Severely,False,0.19,0.05,0.26,0.5
+Slightly,Not at all,False,0.5,0.46,0.04,0.0
+Not at all,Slightly,False,0.15,0.4,0.25,0.2
+Not at all,Not at all,True,0.53,0.43,0.04,0.0
+Not at all,Not at all,True,0.97,0.03,0.0,0.0
+Moderately,Moderately,True,0.16,0.14,0.49,0.21
+Severely,Severely,True,0.07,0.05,0.21,0.67
+Not at all,Not at all,True,0.62,0.2,0.17,0.01
+Severely,Severely,True,0.04,0.05,0.14,0.77
+Moderately,Moderately,True,0.14,0.31,0.36,0.19
+Not at all,Not at all,True,0.6,0.31,0.09,0.0
+Moderately,Not at all,False,0.58,0.2,0.14,0.08
+Moderately,Moderately,True,0.06,0.05,0.62,0.27
+Slightly,Moderately,False,0.06,0.23,0.59,0.12
+Moderately,Moderately,True,0.04,0.04,0.49,0.43
+Not at all,Not at all,True,0.68,0.2,0.09,0.03
+Moderately,Moderately,True,0.08,0.19,0.48,0.25
+Not at all,Not at all,True,0.53,0.36,0.09,0.02
+Slightly,Slightly,True,0.05,0.5,0.41,0.04
+Severely,Severely,True,0.02,0.01,0.13,0.84
+Not at all,Not at all,True,0.98,0.02,0.0,0.0
+Severely,Severely,True,0.0,0.01,0.15,0.84
+Not at all,Not at all,True,0.55,0.4,0.04,0.01
+Not at all,Not at all,True,0.51,0.23,0.23,0.03
+Not at all,Not at all,True,0.62,0.33,0.04,0.01
+Not at all,Not at all,True,0.49,0.46,0.04,0.01
+Severely,Severely,True,0.01,0.04,0.17,0.78
+Severely,Severely,True,0.03,0.01,0.37,0.59
+Slightly,Slightly,True,0.26,0.49,0.13,0.12
+Severely,Severely,True,0.07,0.19,0.32,0.42
+Severely,Severely,True,0.01,0.02,0.12,0.85
+Slightly,Slightly,True,0.2,0.5,0.12,0.18
+Moderately,Slightly,False,0.21,0.34,0.21,0.24
+Slightly,Not at all,False,0.68,0.27,0.05,0.0
+Moderately,Severely,False,0.05,0.05,0.3,0.6
+Not at all,Slightly,False,0.33,0.43,0.22,0.02
+Not at all,Not at all,True,0.73,0.2,0.07,0.0
+Slightly,Slightly,True,0.18,0.51,0.27,0.04
+Slightly,Slightly,True,0.16,0.55,0.26,0.03
+Severely,Severely,True,0.02,0.04,0.11,0.83
+Moderately,Moderately,True,0.04,0.03,0.53,0.4
+Moderately,Not at all,False,0.36,0.32,0.24,0.08
+Moderately,Moderately,True,0.08,0.31,0.53,0.08
+Not at all,Not at all,True,0.66,0.2,0.14,0.0
+Slightly,Slightly,True,0.24,0.44,0.23,0.09
+Severely,Severely,True,0.11,0.05,0.19,0.65
+Not at all,Slightly,False,0.4,0.51,0.07,0.02
+Severely,Severely,True,0.05,0.02,0.13,0.8
+Not at all,Not at all,True,0.61,0.24,0.15,0.0
+Slightly,Not at all,False,0.75,0.25,0.0,0.0
+Severely,Severely,True,0.06,0.04,0.25,0.65
+Slightly,Slightly,True,0.38,0.56,0.03,0.03
+Slightly,Not at all,False,0.61,0.31,0.07,0.01
+Severely,Severely,True,0.05,0.04,0.42,0.49
+Moderately,Moderately,True,0.03,0.32,0.53,0.12
+Slightly,Not at all,False,0.43,0.42,0.14,0.01
+Slightly,Moderately,False,0.32,0.23,0.43,0.02
+Slightly,Not at all,False,0.38,0.27,0.32,0.03
+Moderately,Moderately,True,0.04,0.01,0.54,0.41
+Moderately,Moderately,True,0.1,0.42,0.46,0.02
+Severely,Severely,True,0.02,0.08,0.39,0.51
+Moderately,Moderately,True,0.07,0.29,0.61,0.03
+Slightly,Not at all,False,0.42,0.22,0.2,0.16
+Moderately,Slightly,False,0.19,0.42,0.36,0.03
+Slightly,Slightly,True,0.13,0.66,0.19,0.02
+Moderately,Moderately,True,0.04,0.41,0.47,0.08
+Slightly,Slightly,True,0.37,0.4,0.17,0.06
+Slightly,Moderately,False,0.22,0.2,0.41,0.17
+Severely,Severely,True,0.01,0.02,0.19,0.78
+Not at all,Not at all,True,0.66,0.13,0.2,0.01
+Moderately,Not at all,False,0.55,0.18,0.17,0.1
+Slightly,Slightly,True,0.06,0.41,0.35,0.18
+Moderately,Slightly,False,0.16,0.38,0.31,0.15
+Moderately,Moderately,True,0.07,0.04,0.59,0.3
+Not at all,Not at all,True,0.58,0.34,0.08,0.0
+Severely,Severely,True,0.0,0.0,0.26,0.74
+Severely,Slightly,False,0.17,0.4,0.31,0.12
+Severely,Severely,True,0.01,0.03,0.1,0.86
+Moderately,Moderately,True,0.07,0.1,0.54,0.29
+Moderately,Severely,False,0.04,0.08,0.3,0.58
+Not at all,Not at all,True,0.79,0.17,0.04,0.0
+Severely,Moderately,False,0.08,0.03,0.52,0.37
+Moderately,Moderately,True,0.01,0.11,0.54,0.34
+Moderately,Slightly,False,0.22,0.63,0.13,0.02
+Severely,Severely,True,0.01,0.02,0.23,0.74
+Severely,Severely,True,0.07,0.09,0.4,0.44
+Slightly,Slightly,True,0.19,0.42,0.38,0.01
+Severely,Severely,True,0.05,0.02,0.22,0.71
+Slightly,Slightly,True,0.35,0.43,0.13,0.09
+Moderately,Not at all,False,0.73,0.24,0.03,0.0
+Slightly,Moderately,False,0.21,0.36,0.41,0.02
+Moderately,Moderately,True,0.04,0.07,0.59,0.3
+Not at all,Not at all,True,0.58,0.3,0.12,0.0
+Slightly,Moderately,False,0.1,0.34,0.48,0.08
+Not at all,Not at all,True,0.98,0.02,0.0,0.0
+Not at all,Not at all,True,0.55,0.38,0.07,0.0
+Not at all,Slightly,False,0.26,0.44,0.28,0.02
+Moderately,Slightly,False,0.09,0.63,0.22,0.06
+Slightly,Moderately,False,0.06,0.2,0.42,0.32
+Moderately,Slightly,False,0.09,0.47,0.29,0.15
+Slightly,Moderately,False,0.02,0.31,0.66,0.01
+Severely,Severely,True,0.0,0.05,0.36,0.59
+Slightly,Slightly,True,0.11,0.38,0.28,0.23
+Moderately,Moderately,True,0.1,0.19,0.42,0.29
+Slightly,Moderately,False,0.24,0.2,0.5,0.06
+Severely,Severely,True,0.24,0.02,0.06,0.68
+Not at all,Moderately,False,0.35,0.27,0.37,0.01
+Not at all,Not at all,True,0.94,0.05,0.01,0.0
+Severely,Severely,True,0.0,0.04,0.29,0.67
+Moderately,Slightly,False,0.16,0.55,0.17,0.12
+Not at all,Not at all,True,0.54,0.42,0.02,0.02
+Not at all,Not at all,True,0.85,0.11,0.03,0.01
+Not at all,Not at all,True,0.7,0.14,0.12,0.04
+Not at all,Not at all,True,0.81,0.14,0.05,0.0
+Moderately,Not at all,False,0.4,0.4,0.19,0.01
+Not at all,Not at all,True,0.6,0.39,0.01,0.0
+Moderately,Slightly,False,0.03,0.56,0.34,0.07
+Slightly,Moderately,False,0.36,0.13,0.48,0.03
+Severely,Moderately,False,0.07,0.15,0.49,0.29
+Slightly,Not at all,False,0.5,0.43,0.02,0.05
+Slightly,Slightly,True,0.16,0.66,0.14,0.04

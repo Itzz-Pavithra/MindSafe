@@ -1,9 +1,9 @@
-Factor_Analyzed,Target_Variable,N,Chi2_Statistic,Degrees_of_Freedom,p_value,p_value_formatted,Cramers_V,Min_Expected_Count,Sparse_Cells_Pct,Interpretation
-Experienced Cyberbullying (Q5),Mental Health Impact,513,146.281,3,1.670935408839286e-31,1.6709e-31,0.534,13.43,0.0,Statistically significant association (p < 0.05). Evidence of dependence with Mental Health Impact.
-Cyberbullying Frequency (Q11),Mental Health Impact,511,51.744,12,6.880849308073755e-07,6.8808e-07,0.184,1.17,25.0,Statistically significant association (p < 0.05). Evidence of dependence with Mental Health Impact.
-Incident Platform (Q10),Mental Health Impact,508,21.736,12,0.04058161654129159,4.0582e-02,0.119,2.42,5.0,Statistically significant association (p < 0.05). Evidence of dependence with Mental Health Impact.
-Witnessed Cyberbullying (Q6),Mental Health Impact,514,3.34,3,0.3420776884666297,3.4208e-01,0.081,19.3,0.0,No statistically significant association (p >= 0.05). Null hypothesis of independence retained.
-Daily Usage Hours (Q4),Mental Health Impact,514,8.981,9,0.4389880870852534,4.3899e-01,0.076,4.39,6.2,No statistically significant association (p >= 0.05). Null hypothesis of independence retained.
-Gender Identity (Q2),Mental Health Impact,514,13.588,9,0.13774278139162469,1.3774e-01,0.094,0.56,50.0,No statistically significant association (p >= 0.05). Null hypothesis of independence retained.
-Posted Offensive Content (Q7),Mental Health Impact,514,11.79,6,0.0668140085789334,6.6814e-02,0.107,1.99,8.3,No statistically significant association (p >= 0.05). Null hypothesis of independence retained.
-Harassment Context / Area (Q17),Mental Health Impact,505,24.442,21,0.27212043782523,2.7212e-01,0.127,0.4,28.1,No statistically significant association (p >= 0.05). Null hypothesis of independence retained.
+Predictor_Variable,Outcome_Variable,Sample_Size_N,Chi_Square_Statistic,Degrees_of_Freedom,p_value,Cramers_V,Significance_alpha_0_05,Interpretation
+Experienced Cyberbullying (Q5),Mental Health Impact,1513,555.7651,3,3.911087388818168e-120,0.6061,True,"Statistically significant association (p < 0.05, V = 0.606). Reject null hypothesis."
+Witnessed Cyberbullying (Q6),Mental Health Impact,1514,125.5418,3,4.939750554346589e-27,0.288,True,"Statistically significant association (p < 0.05, V = 0.288). Reject null hypothesis."
+Posted Offensive Content (Q7),Mental Health Impact,1514,1.2234,6,0.9757133817775068,0.0201,False,"No statistically significant association (p >= 0.05, V = 0.020). Retain null hypothesis."
+Incident Platform (Q10),Mental Health Impact,1323,39.3903,12,9.073040235365755e-05,0.0996,True,"Statistically significant association (p < 0.05, V = 0.100). Reject null hypothesis."
+Cyberbullying Frequency (Q11),Mental Health Impact,1511,818.0356,12,2.2422330619433196e-167,0.4248,True,"Statistically significant association (p < 0.05, V = 0.425). Reject null hypothesis."
+Gender Identity (Q2),Mental Health Impact,1514,10.4394,9,0.3160999438405362,0.0479,False,"No statistically significant association (p >= 0.05, V = 0.048). Retain null hypothesis."
+Daily Usage Hours (Q4),Mental Health Impact,1514,74.4076,15,7.242530061345983e-10,0.128,True,"Statistically significant association (p < 0.05, V = 0.128). Reject null hypothesis."
+Harassment Context Area (Q17),Mental Health Impact,1505,93.0732,21,4.73657392809869e-11,0.1436,True,"Statistically significant association (p < 0.05, V = 0.144). Reject null hypothesis."

@@ -1,0 +1,21 @@
+Model,Actual_Class,Pred_Not at all,Pred_Slightly,Pred_Moderately,Pred_Severely
+Logistic Regression,Not at all,73,18,5,0
+Logistic Regression,Slightly,21,43,13,1
+Logistic Regression,Moderately,6,16,40,9
+Logistic Regression,Severely,0,2,11,45
+Decision Tree,Not at all,68,19,7,2
+Decision Tree,Slightly,17,37,24,0
+Decision Tree,Moderately,10,22,33,6
+Decision Tree,Severely,1,2,17,38
+Support Vector Machine (SVM),Not at all,73,19,4,0
+Support Vector Machine (SVM),Slightly,20,43,14,1
+Support Vector Machine (SVM),Moderately,5,21,38,7
+Support Vector Machine (SVM),Severely,0,3,9,46
+Random Forest,Not at all,77,15,4,0
+Random Forest,Slightly,21,43,14,0
+Random Forest,Moderately,9,19,39,4
+Random Forest,Severely,0,3,7,48
+Dummy Classifier,Not at all,96,0,0,0
+Dummy Classifier,Slightly,78,0,0,0
+Dummy Classifier,Moderately,71,0,0,0
+Dummy Classifier,Severely,58,0,0,0

@@ -1,7 +1,7 @@
-Variable_1,Variable_2,N,Spearman_rho,Spearman_p,Spearman_p_formatted,Direction,Association_Strength,Pearson_r,Pearson_p,Appropriate_Metric,Interpretation
-Cyberbullying_Frequency,Mental_Health_Impact,511,0.242,3.0154101828002826e-08,3.0154e-08,Positive,Weak,0.2476,1.4209e-08,Spearman rho (Ordinal / Likert Data),"Weak positive monotonic association (rho = 0.242, p < 0.05)."
-Emotional_Impact_Severity,Mental_Health_Impact,509,0.3185,1.8462635161528003e-13,1.8463e-13,Positive,Moderate,0.3399,3.1001e-15,Spearman rho (Ordinal / Likert Data),"Moderate positive monotonic association (rho = 0.318, p < 0.05)."
-Cyberbullying_Frequency,Emotional_Impact_Severity,506,0.2776,2.0835179749531227e-10,2.0835e-10,Positive,Weak,0.2733,4.0239e-10,Spearman rho (Ordinal / Likert Data),"Weak positive monotonic association (rho = 0.278, p < 0.05)."
-Daily_Usage_Hours,Mental_Health_Impact,514,-0.0183,0.6793863493364727,6.7939e-01,Negative,Weak,-0.0201,6.4906e-01,Spearman rho (Ordinal / Likert Data),"Non-significant correlation (rho = -0.018, p >= 0.05)."
-Daily_Usage_Hours,Emotional_Impact_Severity,509,0.0358,0.4199954605227241,4.2000e-01,Positive,Weak,0.021,6.3649e-01,Spearman rho (Ordinal / Likert Data),"Non-significant correlation (rho = 0.036, p >= 0.05)."
-Daily_Usage_Hours,Cyberbullying_Frequency,512,-0.0583,0.18804505816585843,1.8805e-01,Negative,Weak,-0.1093,1.3321e-02,Spearman rho (Ordinal / Likert Data),"Non-significant correlation (rho = -0.058, p >= 0.05)."
+Variable_1,Variable_2,Sample_Size_N,Spearman_rho,p_value,Significance_alpha_0_05,Interpretation
+Cyberbullying_Frequency,Mental_Health_Impact,1511,0.6011,4.201018515358932e-149,True,"Statistically significant monotonic association (rho = 0.6011, p = 4.2010e-149)"
+Emotional_Impact_Severity,Mental_Health_Impact,1509,0.8073,0.0,True,"Statistically significant monotonic association (rho = 0.8073, p = 0.0000e+00)"
+Cyberbullying_Frequency,Emotional_Impact_Severity,1506,0.6064,6.634849211751241e-152,True,"Statistically significant monotonic association (rho = 0.6064, p = 6.6348e-152)"
+Daily_Usage_Hours,Mental_Health_Impact,1138,0.0442,0.13619900886373865,False,"No significant monotonic association (rho = 0.0442, p = 1.3620e-01)"
+Daily_Usage_Hours,Emotional_Impact_Severity,1136,0.0419,0.15842542781864274,False,"No significant monotonic association (rho = 0.0419, p = 1.5843e-01)"
+Daily_Usage_Hours,Cyberbullying_Frequency,1138,0.0006,0.9834092859282415,False,"No significant monotonic association (rho = 0.0006, p = 9.8341e-01)"

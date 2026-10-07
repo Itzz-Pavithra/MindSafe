@@ -1,0 +1,2 @@
+Test_Type,Factor_1,Factor_2,Sample_N,Odds_Ratio,p_value,Significance,Interpretation
+Fisher's Exact Test (2x2),Experienced Cyberbullying (Yes vs No),Elevated Mental Health Impact (Moderate/Severe vs Mild/None),513,0.11,8.5899e-26,Statistically Significant (p < 0.001),Respondents with cyberbullying exposure had 0.11 times higher odds of reporting moderate-to-severe mental health impact compared to unharassed individuals (p = 8.59e-26).

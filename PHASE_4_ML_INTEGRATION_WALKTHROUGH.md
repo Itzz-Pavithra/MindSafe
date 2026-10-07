@@ -258,16 +258,17 @@ On `/profile`:
 Dedicated research analytics page reading directly from Phase 3 CSV/JSON results without client-side recalculation:
 
 ### Displayed Artifacts & Metrics:
-1. **Model Specification:** Random Forest Classifier (100 trees, balanced weights, Scenario B).
-2. **Documented Held-Out Test Metrics ($N=103$):**
-   - **Accuracy:** $48.54\%$
-   - **Macro Precision:** $0.3700$
-   - **Macro Recall:** $0.3498$
-   - **Macro F1:** $0.3275$
-   - **Weighted F1:** $0.4177$
-3. **5-Fold Cross-Validation Metrics ($N=411$):**
-   - **Mean CV Accuracy:** $49.88\% \pm 1.74\%$
-   - **Mean CV Weighted F1:** $0.4387 \pm 0.0226$
+1. **Model Specification:** Random Forest Classifier (100 trees, balanced weights, max_depth=15, Scenario B).
+2. **Documented Held-Out Test Metrics ($N=303$):**
+   - **Accuracy:** $67.99\%$
+   - **Macro Precision:** $0.6924$
+   - **Macro Recall:** $0.6820$
+   - **Macro F1:** $0.6865$
+   - **Weighted F1:** $0.6811$
+3. **5-Fold Cross-Validation Metrics ($N=1,211$):**
+   - **Mean CV Accuracy:** $67.05\% \pm 2.70\%$
+   - **Mean CV Weighted F1:** $0.6698 \pm 0.0275$
+   - **Mean CV Macro F1:** $0.6713 \pm 0.0278$
 4. **Global SHAP Feature Importance:**
    - Horizontal bar chart rendering the top 15 features by Mean Absolute SHAP value from `shap_feature_importance.csv`.
    - Clear explanatory caption: *"Mean absolute SHAP values indicate the average magnitude of each feature's contribution to model predictions."*

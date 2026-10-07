@@ -1,21 +1,21 @@
-Model,Actual_Class,Pred_Not_at_all_Raw,Pred_Slightly_Raw,Pred_Moderately_Raw,Pred_Severely_Raw,Pred_Not_at_all_Norm,Pred_Slightly_Norm,Pred_Moderately_Norm,Pred_Severely_Norm
-Logistic Regression,Not at all,23,19,4,0,0.5,0.413,0.087,0.0
-Logistic Regression,Slightly,4,9,9,6,0.1429,0.3214,0.3214,0.2143
-Logistic Regression,Moderately,5,5,6,5,0.2381,0.2381,0.2857,0.2381
-Logistic Regression,Severely,1,2,2,3,0.125,0.25,0.25,0.375
-Decision Tree,Not at all,22,12,10,2,0.4783,0.2609,0.2174,0.0435
-Decision Tree,Slightly,8,7,10,3,0.2857,0.25,0.3571,0.1071
-Decision Tree,Moderately,10,6,2,3,0.4762,0.2857,0.0952,0.1429
-Decision Tree,Severely,1,2,4,1,0.125,0.25,0.5,0.125
-Support Vector Machine (SVM),Not at all,25,18,2,1,0.5435,0.3913,0.0435,0.0217
-Support Vector Machine (SVM),Slightly,6,7,9,6,0.2143,0.25,0.3214,0.2143
-Support Vector Machine (SVM),Moderately,9,3,3,6,0.4286,0.1429,0.1429,0.2857
-Support Vector Machine (SVM),Severely,2,0,3,3,0.25,0.0,0.375,0.375
-Random Forest,Not at all,40,5,1,0,0.8696,0.1087,0.0217,0.0
-Random Forest,Slightly,15,2,9,2,0.5357,0.0714,0.3214,0.0714
-Random Forest,Moderately,13,1,7,0,0.619,0.0476,0.3333,0.0
-Random Forest,Severely,3,0,4,1,0.375,0.0,0.5,0.125
-Dummy Classifier,Not at all,46,0,0,0,1.0,0.0,0.0,0.0
-Dummy Classifier,Slightly,28,0,0,0,1.0,0.0,0.0,0.0
-Dummy Classifier,Moderately,21,0,0,0,1.0,0.0,0.0,0.0
-Dummy Classifier,Severely,8,0,0,0,1.0,0.0,0.0,0.0
+Model,Actual_Class,Pred_Not at all,Pred_Slightly,Pred_Moderately,Pred_Severely
+Logistic Regression,Not at all,72,19,5,0
+Logistic Regression,Slightly,20,43,14,1
+Logistic Regression,Moderately,6,17,38,10
+Logistic Regression,Severely,0,2,12,44
+Decision Tree,Not at all,69,16,9,2
+Decision Tree,Slightly,15,39,22,2
+Decision Tree,Moderately,9,23,35,4
+Decision Tree,Severely,1,2,12,43
+Support Vector Machine (SVM),Not at all,73,19,4,0
+Support Vector Machine (SVM),Slightly,20,42,15,1
+Support Vector Machine (SVM),Moderately,5,21,38,7
+Support Vector Machine (SVM),Severely,0,3,8,47
+Random Forest,Not at all,75,17,4,0
+Random Forest,Slightly,20,42,16,0
+Random Forest,Moderately,5,21,40,5
+Random Forest,Severely,0,3,6,49
+Dummy Classifier,Not at all,96,0,0,0
+Dummy Classifier,Slightly,78,0,0,0
+Dummy Classifier,Moderately,71,0,0,0
+Dummy Classifier,Severely,58,0,0,0

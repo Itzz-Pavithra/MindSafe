@@ -1,5 +1,5 @@
-Actual_Class,Pred_Not at all_Raw,Pred_Not at all_Norm,Pred_Slightly_Raw,Pred_Slightly_Norm,Pred_Moderately_Raw,Pred_Moderately_Norm,Pred_Severely_Raw,Pred_Severely_Norm
-Not at all,23,0.5,19,0.413,4,0.087,0,0.0
-Slightly,4,0.1429,9,0.3214,9,0.3214,6,0.2143
-Moderately,5,0.2381,5,0.2381,6,0.2857,5,0.2381
-Severely,1,0.125,2,0.25,2,0.25,3,0.375
+,Not at all,Slightly,Moderately,Severely
+Not at all,72,19,5,0
+Slightly,20,43,14,1
+Moderately,6,17,38,10
+Severely,0,2,12,44
